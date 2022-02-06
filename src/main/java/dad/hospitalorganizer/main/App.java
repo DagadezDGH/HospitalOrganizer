@@ -1,5 +1,6 @@
 package dad.hospitalorganizer.main;
 
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -7,6 +8,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class App extends Application {
+	
+	
 	private static Stage primaryStage; 
 //	private HospitalController hospitalController;
 	@Override
@@ -17,6 +20,8 @@ public class App extends Application {
 //		primaryStage.getIcons().add(new Image("/images/icon-64x64.png"));
 //		primaryStage.setScene(scene);
 		primaryStage.show();
+		
+		
 
 	}
 
