@@ -5,7 +5,7 @@ import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.request.SendMessage;
 
 public class BotHospital {
-	TelegramBot bot = new TelegramBot("5142094328:AAFtwPNKH4twrywpDjbYP5TxiHvI2vpgI9g");
+	TelegramBot bot = new TelegramBot("token");
 	
 	public BotHospital() {
 	bot.setUpdatesListener(updates -> {
@@ -17,9 +17,6 @@ public class BotHospital {
 				bot.execute(new SendMessage(u.message().chat().id(), "Resultado Query1"));
 			}
 		});
-
-		
-		
 		return UpdatesListener.CONFIRMED_UPDATES_ALL;
 	});
 	
