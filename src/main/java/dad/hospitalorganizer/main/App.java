@@ -43,5 +43,11 @@ public class App extends Application {
 		alert.setContentText(content);
 		alert.showAndWait();
 	}
-
+	public static void confirmation(String header) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.initOwner(primaryStage);
+		alert.setTitle("Confirmación");
+		alert.setHeaderText(header);
+		alert.showAndWait();
+	}
 }
