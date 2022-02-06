@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="iconoInventario" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+            <Label text="Inventario">
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tableArticulos" prefHeight="251.0" prefWidth="500.0">
+              <columns>
+                <TableColumn fx:id="codArticulo" prefWidth="100.0" text="Codigo articulo" />
+                <TableColumn fx:id="nombre" prefWidth="100.0" text="Nombre" />
+                  <TableColumn fx:id="descripcion" prefWidth="100.0" text="Descripcion" />
+                  <TableColumn fx:id="ubicacion" prefWidth="100.0" text="Ubicacion" />
+                  <TableColumn fx:id="cantidad" prefWidth="100.0" text="Cantidad" />
+              </columns>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </TableView>
+            <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="500.0">
+               <children>
+                  <Button fx:id="crear" mnemonicParsing="false" onAction="#onClickCrear" text="Crear">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="modificar" mnemonicParsing="false" onAction="#onClickModificar" text="Modificar">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="eliminar" mnemonicParsing="false" onAction="#onClickEliminar" text="Eliminar">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
