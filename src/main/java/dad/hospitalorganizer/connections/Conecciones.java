@@ -1,4 +1,4 @@
-package Conections;
+package dad.hospitalorganizer.connections;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

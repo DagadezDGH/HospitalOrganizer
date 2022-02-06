@@ -1,28 +1,29 @@
 package dad.hospitalorganizer.main;
 
 
+import dad.hospitalorganizer.controller.LoginController;
+import dad.hospitalorganizer.controller.MainController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application {
 	
-	
 	private static Stage primaryStage; 
-//	private HospitalController hospitalController;
+	private MainController mainController;
+	private LoginController loginController;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-//		Scene scene = new Scene(hospitalController.getView());
-		
+		mainController = new MainController();
+		loginController = new LoginController();
+		Scene scene = new Scene(loginController.getView());
 		primaryStage.setTitle("HospitalOrganizer");
-//		primaryStage.getIcons().add(new Image("/images/icon-64x64.png"));
-//		primaryStage.setScene(scene);
+		primaryStage.getIcons().add(new Image("/images/icon-64x64.png"));
+		primaryStage.setScene(scene);
 		primaryStage.show();
-		
-		
-
 	}
 
 	public static void main(String[] args) {

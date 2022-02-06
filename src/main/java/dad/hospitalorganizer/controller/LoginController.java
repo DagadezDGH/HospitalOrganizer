@@ -10,33 +10,29 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 public class LoginController implements Initializable{
-	
+    @FXML
+    private PasswordField contraseñaText;
 
-	
+    @FXML
+    private Button entrarButton;
 
-	    @FXML
-	    private AnchorPane view;
+    @FXML
+    private TextField usuarioText;
 
-	    @FXML
-	    private TextField usuario;
+    @FXML
+    private GridPane view;
 
-	    @FXML
-	    private TextField contraseña;
+    @FXML
+    void onClickEntrar(ActionEvent event) {
 
-	    @FXML
-	    private Button entrar;
-
-	    @FXML
-	    private Label errorlbl;
-
-	    @FXML
-	    void onClickEntrar(ActionEvent event) {
-
-	    }
+    }
 	    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -48,5 +44,7 @@ public class LoginController implements Initializable{
 		loader.setController(this);
 		loader.load();
 	}
-
+	public GridPane getView() {
+		return view;
+	}
 }
