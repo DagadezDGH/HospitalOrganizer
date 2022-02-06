@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="600.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0">
          <children>
             <Label text="Proveedor: " />
-            <ComboBox fx:id="proveedorbox" prefWidth="250.0">
+            <ComboBox fx:id="proveedorBox" prefWidth="250.0">
                <HBox.margin>
                   <Insets left="15.0" right="30.0" />
                </HBox.margin>
             </ComboBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="600.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0">
          <children>
             <Label text="Articulo: " />
             <ComboBox fx:id="articulosBox" prefWidth="300.0">
@@ -32,10 +32,10 @@
             </ComboBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="600.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0">
          <children>
             <Label text="Cantidad: " />
-            <TextField fx:id="cantidad" prefWidth="300.0">
+            <TextField fx:id="cantidadText" prefWidth="300.0">
                <HBox.margin>
                   <Insets left="15.0" right="30.0" />
                </HBox.margin>
@@ -60,7 +60,7 @@
                   </TableView>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="crear" mnemonicParsing="false" onAction="#onClickCrear" text="Crear">
+                        <Button fx:id="crearButton" mnemonicParsing="false" onAction="#onClickCrear" text="Crear">
                            <HBox.margin>
                               <Insets right="30.0" />
                            </HBox.margin>

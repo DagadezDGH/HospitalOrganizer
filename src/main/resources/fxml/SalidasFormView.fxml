@@ -10,48 +10,69 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="600.0">
+      <HBox alignment="CENTER_LEFT">
          <children>
             <Label text="Lugar: " />
-            <TextField fx:id="Lugar" prefWidth="300.0">
+            <TextField fx:id="lugarText" prefWidth="300.0">
                <HBox.margin>
-                  <Insets left="15.0" right="30.0" />
+                  <Insets />
                </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </TextField>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="600.0">
+      <HBox alignment="CENTER_LEFT">
          <children>
             <Label text="Motivo: " />
-            <TextField fx:id="motivo" prefWidth="300.0">
+            <TextField fx:id="motivoText" prefWidth="300.0">
                <HBox.margin>
-                  <Insets left="15.0" right="30.0" />
+                  <Insets />
                </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </TextField>
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="50.0" prefHeight="40.0" prefWidth="600.0">
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="50.0">
          <children>
             <Label text="Paciente: " />
-            <ComboBox prefWidth="300.0">
+            <ComboBox fx:id="pacienteBox" prefWidth="300.0">
                <HBox.margin>
-                  <Insets left="15.0" right="30.0" />
+                  <Insets />
                </HBox.margin>
             </ComboBox>
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="600.0">
+      <HBox alignment="CENTER_LEFT">
          <children>
             <Label text="Articulo: " />
             <ComboBox fx:id="articulosBox" prefWidth="250.0">
                <HBox.margin>
                   <Insets left="15.0" right="30.0" />
                </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </ComboBox>
             <Label text="Cantidad: " />
-            <TextField fx:id="cantidad" prefWidth="50.0">
+            <TextField fx:id="cantidadText" prefWidth="50.0">
                <HBox.margin>
                   <Insets left="15.0" right="30.0" />
                </HBox.margin>
@@ -62,10 +83,13 @@
                </HBox.margin>
             </Button>
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </HBox>
-      <HBox layoutX="10.0" layoutY="152.0" prefHeight="255.0" prefWidth="600.0">
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="152.0" VBox.vgrow="ALWAYS">
          <children>
-            <VBox prefHeight="187.0" prefWidth="600.0">
+            <VBox HBox.hgrow="ALWAYS">
                <children>
                   <TableView fx:id="tableArticulos" prefHeight="251.0" prefWidth="500.0">
                      <columns>
@@ -78,19 +102,31 @@
                      <VBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </VBox.margin>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER">
                      <children>
-                        <Button fx:id="crear" mnemonicParsing="false" onAction="#onClickCrear" text="Crear">
+                        <Button fx:id="crearButton" mnemonicParsing="false" onAction="#onClickCrear" text="Crear">
                            <HBox.margin>
-                              <Insets right="30.0" />
+                              <Insets />
                            </HBox.margin>
                         </Button>
                      </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                   </HBox>
                </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </VBox>
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </HBox>
    </children>
 </VBox>

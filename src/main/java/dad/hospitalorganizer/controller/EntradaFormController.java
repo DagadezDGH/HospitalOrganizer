@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -22,13 +21,13 @@ public class EntradaFormController implements Initializable{
 	    private VBox view;
 
 	    @FXML
-	    private ComboBox<?> proveedorbox;
+	    private ComboBox<?> proveedorBox;
 
 	    @FXML
 	    private ComboBox<?> articulosBox;
 
 	    @FXML
-	    private TextField cantidad;
+	    private TextField cantidadText;
 	    
 	    @FXML
 	    private TableView<?> tableArticulos;
@@ -49,7 +48,7 @@ public class EntradaFormController implements Initializable{
 	    private TableColumn<?, ?> cantidad1;
 
 	    @FXML
-	    private Button crear;
+	    private Button crearButton;
 
 
 		@Override

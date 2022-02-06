@@ -10,14 +10,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 public class EntradaController implements Initializable{
 	
 
 	
 		@FXML
-		private BorderPane view;
+		private GridPane view;
 		
 	    @FXML
 	    private ImageView iconoEntradas;
@@ -47,7 +47,7 @@ public class EntradaController implements Initializable{
 			loader.load();
 		}
 
-		public BorderPane getView() {
+		public GridPane getView() {
 			
 			return view;
 		}

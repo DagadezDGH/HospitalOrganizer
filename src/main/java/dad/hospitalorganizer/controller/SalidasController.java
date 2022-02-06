@@ -10,13 +10,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 public class SalidasController implements Initializable{
 	
 
 	    @FXML
-	    private BorderPane view;
+	    private GridPane view;
 
 	    @FXML
 	    private ImageView iconoSalidas;
@@ -57,7 +57,7 @@ public class SalidasController implements Initializable{
 
 	}
 
-	public BorderPane getView() {
+	public GridPane getView() {
 		return view;
 	}
 

@@ -21,16 +21,16 @@ public class SalidasFormController implements Initializable{
 	    private VBox view;
 
 	    @FXML
-	    private TextField Lugar;
+	    private TextField lugarText;
 
 	    @FXML
-	    private TextField motivo;
+	    private TextField motivoText;
 
 	    @FXML
 	    private ComboBox<String> articulosBox;
 
 	    @FXML
-	    private TextField cantidad;
+	    private TextField cantidadText;
 	    
 	    @FXML
 	    private TableView<?> tableArticulos;
@@ -51,7 +51,7 @@ public class SalidasFormController implements Initializable{
 	    private TableColumn<?, ?> cantidad1;
 
 	    @FXML
-	    private Button crear;
+	    private Button crearButton;
 	    
 	    @Override
 		public void initialize(URL location, ResourceBundle resources) {
