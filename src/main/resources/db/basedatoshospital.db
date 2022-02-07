@@ -48,7 +48,7 @@ CREATE TABLE SalidaArticulo(
  FOREIGN KEY (codArticulo) REFERENCES Articulos(codArticulo));
 
 CREATE TABLE EntradaArticulo(
- codLote integer AUTO_INCREMENT PRIMARY KEY,
+ codEntradaArticulo integer AUTO_INCREMENT PRIMARY KEY,
  codArticulo INTEGER,
  codEntrada INTEGER,
  cantidad INTEGER,

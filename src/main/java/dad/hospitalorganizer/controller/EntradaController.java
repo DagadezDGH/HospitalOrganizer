@@ -14,8 +14,6 @@ import javafx.scene.layout.GridPane;
 
 public class EntradaController implements Initializable{
 	
-
-	
 		@FXML
 		private GridPane view;
 		
@@ -23,18 +21,17 @@ public class EntradaController implements Initializable{
 	    private ImageView iconoEntradas;
 
 	    @FXML
-	    private Button nuevoButton;
+	    private Button nuevoPedidoButton;
 
 	    @FXML
 	    private ImageView iconoEntradasNuevo;
 
 	    @FXML
-	    private Button verButton;
+	    private Button verPedidoButton;
 
 	    @FXML
 	    private ImageView iconoEntradasVer;
 
-	    
 	    @Override
 		public void initialize(URL location, ResourceBundle resources) {
 			// TODO Auto-generated method stub
@@ -54,16 +51,12 @@ public class EntradaController implements Initializable{
 	    
 	    
 	    @FXML
-	    void onclickPedido(ActionEvent event) {
+	    void onClickNuevoPedido(ActionEvent event) {
 
 	    }
 
 	    @FXML
-	    void onclickPedidoVer(ActionEvent event) {
+	    void onClickVerPedido(ActionEvent event) {
 
 	    }
-
-		
-
-	
 }

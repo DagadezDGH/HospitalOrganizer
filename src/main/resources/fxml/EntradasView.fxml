@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<GridPane fx:id="view" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="view" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -22,7 +21,7 @@
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="green" stylesheets="@../css/Clasico.css" GridPane.columnSpan="2">
          <children>
             <ImageView fx:id="iconoEntradas" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -39,9 +38,9 @@
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+      <HBox alignment="CENTER" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnSpan="2" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="nuevoButton" mnemonicParsing="false" onAction="#onclickPedido" text="Nuevo pedido">
+            <Button fx:id="nuevoPedidoButton" mnemonicParsing="false" onAction="#onClickNuevoPedido" text="Nuevo pedido">
                <font>
                   <Font size="18.0" />
                </font>
@@ -59,7 +58,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="verButton" mnemonicParsing="false" onAction="#onclickPedidoVer" text="Ver pedidos">
+            <Button fx:id="verPedidoButton" mnemonicParsing="false" onAction="#onClickVerPedido" text="Ver pedidos">
                <font>
                   <Font size="18.0" />
                </font>

@@ -1,6 +1,7 @@
 package dad.hospitalorganizer.controller;
 
 import java.io.IOException;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,65 +14,59 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 
-public class EntradaFormController implements Initializable{
-	
-	  	@FXML
-	    private VBox view;
+public class EntradaFormController implements Initializable {
 
-	    @FXML
-	    private ComboBox<?> proveedorBox;
+	@FXML
+	private GridPane view;
 
-	    @FXML
-	    private ComboBox<?> articulosBox;
+	@FXML
+	private ComboBox<?> proveedorBox;
 
-	    @FXML
-	    private TextField cantidadText;
-	    
-	    @FXML
-	    private TableView<?> tableArticulos;
+	@FXML
+	private ComboBox<?> articulosBox;
 
-	    @FXML
-	    private TableColumn<?, ?> codArticulo;
+	@FXML
+	private TextField cantidadText;
 
-	    @FXML
-	    private TableColumn<?, ?> nombre;
+	@FXML
+	private TableView<?> tablaEntradaArticulo;
 
-	    @FXML
-	    private TableColumn<?, ?> descripcion;
+	@FXML
+	private TableColumn<?, ?> IdColumn;
 
-	    @FXML
-	    private TableColumn<?, ?> ubicacion;
+	@FXML
+	private TableColumn<?, ?> articuloColumn;
 
-	    @FXML
-	    private TableColumn<?, ?> cantidad1;
+	@FXML
+	private TableColumn<?, ?> entradaColumn;
 
-	    @FXML
-	    private Button crearButton;
+	@FXML
+	private TableColumn<?, ?> cantidadColumn;
 
+	@FXML
+	private TableColumn<?, ?> caducidadColumn;
 
-		@Override
-		public void initialize(URL location, ResourceBundle resources) {
-			// TODO Auto-generated method stub
-			
-		}
-		public EntradaFormController() throws IOException {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EntradasFormView.fxml"));
-			loader.setController(this);
-			loader.load();
+	@FXML
+	private Button crearButton;
 
-			
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
 
-		}
+	}
 
-		public VBox getView() {
-			return view;
-		}
-		
+	public EntradaFormController() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EntradasFormView.fxml"));
+		loader.setController(this);
+		loader.load();
+	}
 
-	    @FXML
-	    void onClickCrear(ActionEvent event) {
-
-	    }
+	@FXML
+	void onClickCrear(ActionEvent event) {
+	}
+	public GridPane getView() {
+		return view;
+	}
 }

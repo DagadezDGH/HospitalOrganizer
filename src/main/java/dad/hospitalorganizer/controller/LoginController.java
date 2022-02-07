@@ -14,7 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class LoginController implements Initializable{
-    @FXML
+    
+	@FXML
     private PasswordField contraseñaText;
 
     @FXML
@@ -25,11 +26,6 @@ public class LoginController implements Initializable{
 
     @FXML
     private GridPane view;
-
-    @FXML
-    void onClickEntrar(ActionEvent event) {
-
-    }
 	    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -41,6 +37,12 @@ public class LoginController implements Initializable{
 		loader.setController(this);
 		loader.load();
 	}
+
+    @FXML
+    void onClickEntrar(ActionEvent event) {
+
+    }
+    
 	public GridPane getView() {
 		return view;
 	}

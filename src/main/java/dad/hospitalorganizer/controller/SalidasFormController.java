@@ -13,73 +13,73 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 
-public class SalidasFormController implements Initializable{
+public class SalidasFormController implements Initializable {
 
-	    @FXML
-	    private VBox view;
+	@FXML
+	private GridPane view;
 
-	    @FXML
-	    private TextField lugarText;
+	@FXML
+	private TableView<?> tableArticulos;
 
-	    @FXML
-	    private TextField motivoText;
+	@FXML
+	private TableColumn<?, ?> codArticulo;
 
-	    @FXML
-	    private ComboBox<String> articulosBox;
+	@FXML
+	private TableColumn<?, ?> nombre;
 
-	    @FXML
-	    private TextField cantidadText;
-	    
-	    @FXML
-	    private TableView<?> tableArticulos;
-	    
-	    @FXML
-	    private TableColumn<?, ?> codArticulo;
+	@FXML
+	private TableColumn<?, ?> descripcion;
 
-	    @FXML
-	    private TableColumn<?, ?> nombre;
+	@FXML
+	private TableColumn<?, ?> ubicacion;
 
-	    @FXML
-	    private TableColumn<?, ?> descripcion;
+	@FXML
+	private TableColumn<?, ?> cantidad;
 
-	    @FXML
-	    private TableColumn<?, ?> ubicacion;
+	@FXML
+	private Button crearButton;
 
-	    @FXML
-	    private TableColumn<?, ?> cantidad1;
+	@FXML
+	private TextField lugarText;
 
-	    @FXML
-	    private Button crearButton;
-	    
-	    @Override
-		public void initialize(URL location, ResourceBundle resources) {
-			// TODO Auto-generated method stub
-			
-		}
-	    
-	    public SalidasFormController() throws IOException {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SalidasFormView.fxml"));
-			loader.setController(this);
-			loader.load();
+	@FXML
+	private TextField motivoText;
 
+	@FXML
+	private ComboBox<?> pacienteCombo;
 
-		}
+	@FXML
+	private ComboBox<?> articulosCombo;
 
-		public VBox getView() {
-			return view;
-		}
+	@FXML
+	private TextField cantidadText;
 
-	    @FXML
-	    void onClickAñadir(ActionEvent event) {
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
 
-	    }
+	}
 
-	    @FXML
-	    void onClickCrear(ActionEvent event) {
+	public SalidasFormController() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SalidasFormView.fxml"));
+		loader.setController(this);
+		loader.load();
+	}
 
-	    }
-	
+	public GridPane getView() {
+		return view;
+	}
+
+	@FXML
+	void onClickAnadir(ActionEvent event) {
+
+	}
+
+	@FXML
+	void onClickCrear(ActionEvent event) {
+
+	}
 
 }

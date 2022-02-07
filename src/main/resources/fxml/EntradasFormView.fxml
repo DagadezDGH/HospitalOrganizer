@@ -7,69 +7,82 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<VBox fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="view" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+   </rowConstraints>
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0">
+      <ComboBox fx:id="proveedorBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin></ComboBox>
+      <ComboBox fx:id="articulosBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin></ComboBox>
+      <TextField fx:id="cantidadText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin></TextField>
+      <TableView fx:id="tablaEntradaArticulo" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
+         <columns>
+            <TableColumn fx:id="IdColumn" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="articuloColumn" prefWidth="75.0" text="Articulo" />
+            <TableColumn fx:id="entradaColumn" prefWidth="75.0" text="Entrada" />
+            <TableColumn fx:id="cantidadColumn" prefWidth="75.0" text="Cantidad" />
+            <TableColumn fx:id="caducidadColumn" prefWidth="75.0" text="Caducidad" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TableView>
+      <Button fx:id="crearButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onClickCrear" text="Crear" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Button>
+      <HBox alignment="CENTER_RIGHT">
          <children>
-            <Label text="Proveedor: " />
-            <ComboBox fx:id="proveedorBox" prefWidth="250.0">
-               <HBox.margin>
-                  <Insets left="15.0" right="30.0" />
-               </HBox.margin>
-            </ComboBox>
+            <Label alignment="CENTER" text="Proveedor: " />
          </children>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0">
+      <HBox alignment="CENTER_RIGHT" GridPane.rowIndex="1">
          <children>
-            <Label text="Articulo: " />
-            <ComboBox fx:id="articulosBox" prefWidth="300.0">
-               <HBox.margin>
-                  <Insets left="15.0" right="30.0" />
-               </HBox.margin>
-            </ComboBox>
+            <Label alignment="CENTER" text="Articulo: " />
          </children>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0">
+      <HBox alignment="CENTER_RIGHT" GridPane.rowIndex="2">
          <children>
-            <Label text="Cantidad: " />
-            <TextField fx:id="cantidadText" prefWidth="300.0">
-               <HBox.margin>
-                  <Insets left="15.0" right="30.0" />
-               </HBox.margin>
-            </TextField>
+            <Label alignment="CENTER" text="Cantidad: " />
          </children>
-      </HBox>
-      <HBox layoutX="10.0" layoutY="152.0" prefHeight="255.0" prefWidth="600.0">
-         <children>
-            <VBox prefHeight="187.0" prefWidth="600.0">
-               <children>
-                  <TableView fx:id="tableArticulos" prefHeight="251.0" prefWidth="500.0">
-                     <columns>
-                        <TableColumn fx:id="codArticulo" prefWidth="120.0" text="Codigo articulo" />
-                        <TableColumn fx:id="nombre" prefWidth="120.0" text="Nombre" />
-                        <TableColumn fx:id="descripcion" prefWidth="120.0" text="Descripcion" />
-                        <TableColumn fx:id="ubicacion" prefWidth="120.0" text="Ubicacion" />
-                        <TableColumn fx:id="cantidad1" prefWidth="120.0" text="Cantidad" />
-                     </columns>
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </VBox.margin>
-                  </TableView>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="crearButton" mnemonicParsing="false" onAction="#onClickCrear" text="Crear">
-                           <HBox.margin>
-                              <Insets right="30.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
       </HBox>
    </children>
-</VBox>
+</GridPane>
