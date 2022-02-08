@@ -45,7 +45,7 @@ public class App extends Application {
 		//Scene scene = new Scene(inventarioControlller.getView());
 		//Scene scene = new Scene(salidasController.getView());
 		//Scene scene = new Scene(salidasFormController.getView());
-		Scene scene = new Scene(loginController.getView());
+		Scene scene = new Scene(inventarioControlller.getView());
 		//Scene scene = new Scene(mainController.getView());
 		primaryStage.setTitle("HospitalOrganizer");
 		primaryStage.getIcons().add(new Image("/images/icon-64x64.png"));

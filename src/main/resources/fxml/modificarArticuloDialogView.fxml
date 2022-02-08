@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="view" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" prefHeight="99.0" prefWidth="400.0" spacing="50.0">
+         <children>
+            <Label text="Nombre Articulo" />
+            <TextField id="resi" fx:id="nombretxt" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+         <children>
+            <Label text="Ubicación: " />
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="148.0" spacing="2.0">
+               <children>
+                  <TextField id="precio" fx:id="ubicaciontxt" />
+                  <Label id="fallo" textFill="#fc0000" />
+               </children>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="237.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+         <children>
+            <Label text="Cantidad: " />
+            <TextField id="precio" fx:id="cantidadtxt" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+         <children>
+            <Label text="Descripcion: " />
+            <TextArea fx:id="descripciontxt" prefHeight="200.0" prefWidth="200.0" promptText="Descripcion del producto..." />
+         </children>
+      </HBox>
+   </children>
+</VBox>
