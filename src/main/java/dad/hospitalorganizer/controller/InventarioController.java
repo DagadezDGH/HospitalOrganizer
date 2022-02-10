@@ -9,9 +9,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import dad.hospitalorganizer.connections.Conecciones;
+import dad.hospitalorganizer.dialogs.crearArticuloDialog;
+import dad.hospitalorganizer.dialogs.modificarArticuloDialog;
 import dad.hospitalorganizer.models.Articulo;
-import dialogs.crearArticuloDialog;
-import dialogs.modificarArticuloDialog;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;

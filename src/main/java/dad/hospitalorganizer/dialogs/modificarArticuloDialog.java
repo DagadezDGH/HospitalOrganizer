@@ -1,4 +1,4 @@
-package dialogs;
+package dad.hospitalorganizer.dialogs;
 
 /**
  * @author Carlos Javier Cosme Melian

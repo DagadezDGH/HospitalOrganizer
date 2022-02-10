@@ -1,4 +1,4 @@
-package dialogs;
+package dad.hospitalorganizer.dialogs;
 
 
 import javafx.beans.property.BooleanProperty;
