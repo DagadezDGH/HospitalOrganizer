@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dad.hospitalorganizer.main.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +53,7 @@ public class EntradaController implements Initializable{
 	    
 	    @FXML
 	    void onClickNuevoPedido(ActionEvent event) {
-
+	    	App.goToEntradaForm();
 	    }
 
 	    @FXML

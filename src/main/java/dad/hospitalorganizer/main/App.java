@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 	
 	private static Stage primaryStage; 
+	
 	private EntradaController entradaController;
 	private EntradaFormController entradaFormController;
 	private InventarioController inventarioControlller;
@@ -27,10 +28,19 @@ public class App extends Application {
 	private LoginController loginController;
 	private MainController mainController;
 	private SalidasFormController salidasFormController;
+	
+	static Scene inventario;
+	static Scene main;
+	static Scene entrada;
+	static Scene entradaForm;
+	static Scene salidas;
+	static Scene salidasForm;
+	static Scene login;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
+		App.primaryStage = primaryStage;
 		
 		entradaController=new EntradaController();
 		entradaFormController=new EntradaFormController();
@@ -45,11 +55,17 @@ public class App extends Application {
 		//Scene scene = new Scene(inventarioControlller.getView());
 		//Scene scene = new Scene(salidasController.getView());
 		//Scene scene = new Scene(salidasFormController.getView());
-		Scene scene = new Scene(inventarioControlller.getView());
-		//Scene scene = new Scene(mainController.getView());
+		login = new Scene(loginController.getView());
+		main = new Scene(mainController.getView());
+		inventario = new Scene(inventarioControlller.getView());
+		entrada = new Scene(entradaController.getView());
+		entradaForm = new Scene(entradaFormController.getView());
+		salidas = new Scene(salidasController.getView());
+		salidasForm = new Scene(salidasFormController.getView());
+		
+		primaryStage.setScene(main);
 		primaryStage.setTitle("HospitalOrganizer");
 		primaryStage.getIcons().add(new Image("/images/icon-64x64.png"));
-		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 
@@ -57,8 +73,23 @@ public class App extends Application {
 		launch(args);
 
 	}
-	public static Stage getPrimaryStage() {
-		return primaryStage;
+	public static void goToMain() {
+		primaryStage.setScene(main);
+	}
+	public static void goToInventario() {
+		primaryStage.setScene(inventario);
+	}
+	public static void goToEntrada() {
+		primaryStage.setScene(entrada);
+	}
+	public static void goToEntradaForm() {
+		primaryStage.setScene(entradaForm);
+	}
+	public static void goToSalidas() {
+		primaryStage.setScene(salidas);
+	}
+	public static void goToSalidasForm() {
+		primaryStage.setScene(salidasForm);
 	}
 	public static void error(String header) {
 		Alert alert = new Alert(AlertType.ERROR);

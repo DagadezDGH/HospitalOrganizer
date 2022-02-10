@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dad.hospitalorganizer.main.App;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
@@ -46,7 +47,7 @@ public class SalidasController implements Initializable {
 
 	@FXML
 	void onClickNuevoSalida(ActionEvent event) {
-
+		App.goToSalidasForm();
 	}
 
 	@FXML

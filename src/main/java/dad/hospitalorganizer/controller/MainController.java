@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dad.hospitalorganizer.main.App;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
@@ -59,12 +60,12 @@ public class MainController implements Initializable {
 	
     @FXML
     void onClickEntradas(ActionEvent event) {
-
+    	App.goToEntrada();
     }
 
     @FXML
     void onClickInventario(ActionEvent event) {
-
+    	App.goToInventario();
     }
 
     @FXML
@@ -74,7 +75,7 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickSalidas(ActionEvent event) {
-
+    	App.goToSalidas();
     }
 	
 	public GridPane getView() {
