@@ -57,57 +57,102 @@ CREATE TABLE EntradaArticulo(
  FOREIGN KEY (codArticulo) REFERENCES Articulos(codArticulo));
 
 
-insert into Proveedores VALUES ('00005', 'Coca cola', '922001122');
-insert into Proveedores VALUES ('00100', 'Calcedonia','900006699');
-insert into Proveedores VALUES ('00010', 'Melocoton', '911001100');
-insert into Proveedores VALUES ('10000', 'Melocoton', '911001100');
+insert into Proveedores VALUES ('00005', 'Alimentacion', '922001122');
+insert into Proveedores VALUES ('00100', 'Cirugia','900006699');
+insert into Proveedores VALUES ('00010', 'Herramientas', '911001100');
+insert into Proveedores VALUES ('10000', 'Higiene', '900001122');
+insert into Proveedores VALUES ('00111', 'Ocio', '911001100');
 
 insert into Usuarios values ('12346677G', 'Thomas Muller', '0','gestorcomida');
 insert into Usuarios values ('66511977G', 'Tom Crush', '0','gestorhigiene');
+insert into Usuarios values ('97534722Q', 'David Jones', '0','gestorocio');
+insert into Usuarios values ('74196357K', 'Lucia Gracias', '0','gestorcirugia');
+insert into Usuarios values ('22571976F', 'Jom Fly', '1','Foj33ly');
+insert into Usuarios values ('33557722F', 'Luna Martir', '1','2A53RTIM');
+
 
 insert into Entradas VALUES (NULL, '00005','12346677G','2022-01-30', '1');
+insert into Entradas VALUES (NULL, '10000', '66511977G','2022-01-30','1');
+insert into Entradas VALUES (NULL, '00111','97534722Q','2022-01-30', '1');
+insert into Entradas VALUES (NULL, '00100', '74196357K','2022-01-30','1');
 
-insert into Entradas VALUES (NULL, '00100', '66511977G','2022-01-30','1');
-
-insert into Articulos VALUES (NULL, 'Coca cola','Refresco','Cocina', 40);
+insert into Articulos VALUES (NULL, 'Coca cola','Refresco','Cocina', 40); 
 insert into Articulos VALUES (NULL, 'Fanta','Refresco','Cocina', 40);
 insert into Articulos VALUES (NULL, 'Jugo de frutas','Jugo de frutas tropicales','Cocina', 40);
-insert into Articulos VALUES (NULL, 'Guantes','Guantes de tejido magico','Higiene', 100);
-insert into Articulos VALUES (NULL, 'Jabon','Jabon de manos','Higiene', 50);
-insert into Articulos VALUES (NULL, 'Champú','Champú familiar','Higiene', 50);
-insert into Articulos VALUES (NULL, 'Peluche','Oso de peluche','Ocio', 40);
-insert into Articulos VALUES (NULL, 'KH7','Liquido fregasuelos','Higiene', 80);
-insert into Articulos VALUES (NULL, 'Bisturi','Bisturi','Quirofano', 20);
 insert into Articulos VALUES (NULL, 'Galletas de dinosaurios','Galletas de trigo','Cocina', 40);
 insert into Articulos VALUES (NULL, 'Galletas de avena','Galletas de avena sin gluten','Cocina', 40);
 insert into Articulos VALUES (NULL, 'Melocotones','Frutas','Cocina', 40);
-insert into Articulos VALUES (NULL, 'Manzanas','Frutas','Cocina', 40);
+insert into Articulos VALUES (NULL, 'Manzanas','Frutas','Cocina', 40); 
+
+insert into Articulos VALUES (NULL, 'Guantes','Guantes de tejido magico','Higiene', 100); 
+insert into Articulos VALUES (NULL, 'Jabon','Jabon de manos','Higiene', 50);
+insert into Articulos VALUES (NULL, 'Champú','Champú familiar','Higiene', 50);
+insert into Articulos VALUES (NULL, 'KH7','Liquido fregasuelos','Higiene', 80);
+insert into Articulos VALUES (NULL, 'Almohadas','Almohada de algodon','Higiene', 80);
+insert into Articulos VALUES (NULL, 'Sabanas','Sabanas de algodon','Higiene', 80);
+insert into Articulos VALUES (NULL, 'Empapadores','Empapadores','Higiene', 80); 
+
+insert into Articulos VALUES (NULL, 'Peluche','Oso de peluche','Ocio', 40);
+insert into Articulos VALUES (NULL, 'Ajedrez','Juego del ajedrez','Ocio', 40);
+insert into Articulos VALUES (NULL, 'Cartas','Paquete de cartas','Ocio', 40);
+
+insert into Articulos VALUES (NULL, 'Bisturi','Bisturi','Quirofano', 20);
+insert into Articulos VALUES (NULL, 'Sonda','Sonda vejiga','Soporte vital', 20);
 
 insert into EntradaArticulo VALUES(NULL, 1,1, 20,'2022-02-28');
 insert into EntradaArticulo VALUES(NULL, 1,1, 20,'2022-02-28');
 insert into EntradaArticulo VALUES(NULL, 2,1, 20,'2022-02-28');
 insert into EntradaArticulo VALUES(NULL, 3,1, 20,'2022-02-28');
-insert into EntradaArticulo VALUES(NULL, 10,1, 20,'2022-02-28');
-insert into EntradaArticulo VALUES(NULL, 11,1, 20,'2022-02-28');
-insert into EntradaArticulo VALUES(NULL, 4,3, 20,'2022-06-28');
-insert into EntradaArticulo VALUES(NULL, 6,3, 10,'2022-12-28');
+insert into EntradaArticulo VALUES(NULL, 4,1, 20,'2022-06-28');
+insert into EntradaArticulo VALUES(NULL, 5,1, 10,'2022-12-28');
+insert into EntradaArticulo VALUES(NULL, 6,1, 20,'2022-02-28');
+insert into EntradaArticulo VALUES(NULL, 7,1, 20,'2022-02-28');
+
+insert into EntradaArticulo VALUES(NULL, 8,4, 20,'2022-02-28');
+insert into EntradaArticulo VALUES(NULL, 9,4, 20,'2022-02-28');
+insert into EntradaArticulo VALUES(NULL, 10,4, 20,'2022-02-28');
+insert into EntradaArticulo VALUES(NULL, 11,4, 20,'2022-02-28');
+insert into EntradaArticulo VALUES(NULL, 12,3, 20,'2022-02-28');
+insert into EntradaArticulo VALUES(NULL, 13,3, 20,'2022-02-28');
+insert into EntradaArticulo VALUES(NULL, 14,3, 20,'2022-06-28');
+
+insert into EntradaArticulo VALUES(NULL, 15,3, 20,'2022-02-28');
+insert into EntradaArticulo VALUES(NULL, 16,3, 20,'2022-02-28');
+insert into EntradaArticulo VALUES(NULL, 17,3, 20,'2022-06-28');
+
+insert into EntradaArticulo VALUES(NULL, 18,2, 10,'2022-12-28');
+insert into EntradaArticulo VALUES(NULL, 19,2, 10,'2022-12-28');
 
 insert into Salidas VALUES(NULL,'Cafeteria','No hay motivo',NULL,'12346677G','2022-01-30','0');
 insert into Salidas VALUES(NULL,'Habitaciones','Repuestos',NULL,'66511977G','2022-01-30','0');
+insert into Salidas VALUES(NULL,'Sala de espera','Faltan jugetes',NULL,'97534722Q','2022-01-30','0');
+insert into Salidas VALUES(NULL,'Sala de espera','Faltan jugetes',NULL,'97534722Q','2022-02-28','0');
 
 insert into SalidaArticulo VALUES(NULL, 1,1, 20);
 insert into SalidaArticulo VALUES(NULL, 1,1, 20);
 insert into SalidaArticulo VALUES(NULL, 2,1, 20);
-insert into SalidaArticulo VALUES(NULL, 11,1, 20);
-insert into SalidaArticulo VALUES(NULL, 10,1, 20);
-insert into SalidaArticulo VALUES(NULL, 1,2, 20);
-insert into SalidaArticulo VALUES(NULL, 5,2, 10);
-insert into SalidaArticulo VALUES(NULL, 6,2, 20);
-insert into SalidaArticulo VALUES(NULL, 8,2, 10);
+insert into SalidaArticulo VALUES(NULL, 3,1, 20);
+insert into SalidaArticulo VALUES(NULL, 4,1, 20);
+insert into SalidaArticulo VALUES(NULL, 6,1, 20);
+insert into SalidaArticulo VALUES(NULL, 7,1, 10);
+insert into SalidaArticulo VALUES(NULL, 8,2, 20);
+insert into SalidaArticulo VALUES(NULL, 9,2, 10);
+
+insert into SalidaArticulo VALUES(NULL, 10,2, 20);
+insert into SalidaArticulo VALUES(NULL, 11,2, 10);
+insert into SalidaArticulo VALUES(NULL, 13,2, 20);
+insert into SalidaArticulo VALUES(NULL, 14,2, 10);
+
+insert into SalidaArticulo VALUES(NULL, 10,2, 20);
+insert into SalidaArticulo VALUES(NULL, 11,2, 10);
+insert into SalidaArticulo VALUES(NULL, 13,2, 20);
+insert into SalidaArticulo VALUES(NULL, 14,2, 10);
 
 
+insert into SalidaArticulo VALUES(NULL, 15,3, 1);
+insert into SalidaArticulo VALUES(NULL, 16,3, 1);
+insert into SalidaArticulo VALUES(NULL, 17,3, 1);
 
-//Estos no se meten por ahora
-
-insert into Entradas VALUES (NULL, '00100','01745687F','2022-02-28','0');
-insert into Entradas VALUES (NULL, '00010','01745687F', '2022-01-30','1');
+insert into SalidaArticulo VALUES(NULL, 15,4, 1);
+insert into SalidaArticulo VALUES(NULL, 16,4, 1);
+insert into SalidaArticulo VALUES(NULL, 17,4, 1);
