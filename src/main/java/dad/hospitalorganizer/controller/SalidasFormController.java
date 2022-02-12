@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dad.hospitalorganizer.main.App;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,6 +56,9 @@ public class SalidasFormController implements Initializable {
 
 	@FXML
 	private TextField cantidadText;
+    
+	@FXML
+    private Button volverButton;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -81,5 +85,9 @@ public class SalidasFormController implements Initializable {
 	void onClickCrear(ActionEvent event) {
 
 	}
+    @FXML
+    void OnVolverAction(ActionEvent event) {
+    	App.goToMain();
+    }
 
 }

@@ -49,12 +49,7 @@ public class App extends Application {
 		salidasFormController=new SalidasFormController();
 		loginController = new LoginController();
 		mainController = new MainController();
-		
-		//Scene scene = new Scene(entradaController.getView());
-		//Scene scene = new Scene(entradaFormController.getView());
-		//Scene scene = new Scene(inventarioControlller.getView());
-		//Scene scene = new Scene(salidasController.getView());
-		//Scene scene = new Scene(salidasFormController.getView());
+
 		login = new Scene(loginController.getView());
 		main = new Scene(mainController.getView());
 		inventario = new Scene(inventarioControlller.getView());

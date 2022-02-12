@@ -31,6 +31,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -51,7 +52,7 @@ public class crearArticuloDialog extends Dialog<Articulo> {
     private TextField ubicaciontxt;
 
     @FXML
-    private VBox view;
+    private GridPane view;
 
 
 	private ButtonType okButton, cancelButton;

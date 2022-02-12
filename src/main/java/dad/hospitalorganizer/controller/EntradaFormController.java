@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dad.hospitalorganizer.main.App;
+import dad.hospitalorganizer.models.Articulo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class EntradaFormController implements Initializable {
-
+	
 	@FXML
 	private GridPane view;
 
@@ -25,7 +27,7 @@ public class EntradaFormController implements Initializable {
 	private ComboBox<?> proveedorBox;
 
 	@FXML
-	private ComboBox<?> articulosBox;
+	private ComboBox<Articulo> articulosBox;
 
 	@FXML
 	private TextField cantidadText;
@@ -50,7 +52,10 @@ public class EntradaFormController implements Initializable {
 
 	@FXML
 	private Button crearButton;
-
+    
+    @FXML
+    private Button volverButton;
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -69,4 +74,8 @@ public class EntradaFormController implements Initializable {
 	public GridPane getView() {
 		return view;
 	}
+    @FXML
+    void onVolverAction(ActionEvent event) {
+    	App.goToMain();
+    }
 }
