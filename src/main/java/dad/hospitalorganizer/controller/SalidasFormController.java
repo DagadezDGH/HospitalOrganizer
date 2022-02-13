@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dad.hospitalorganizer.main.App;
+import dad.hospitalorganizer.models.SalidaArticulo;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,22 +23,22 @@ public class SalidasFormController implements Initializable {
 	private GridPane view;
 
 	@FXML
-	private TableView<?> tableArticulos;
+	private TableView<SalidaArticulo> tableArticulos;
 
 	@FXML
-	private TableColumn<?, ?> codArticulo;
+	private TableColumn<SalidaArticulo, Integer> codArticulo;
 
 	@FXML
-	private TableColumn<?, ?> nombre;
+	private TableColumn<SalidaArticulo, Integer> nombre;
 
 	@FXML
-	private TableColumn<?, ?> descripcion;
+	private TableColumn<SalidaArticulo, Integer> descripcion;
 
 	@FXML
-	private TableColumn<?, ?> ubicacion;
+	private TableColumn<SalidaArticulo, Integer> ubicacion;
 
 	@FXML
-	private TableColumn<?, ?> cantidad;
+	private TableColumn<SalidaArticulo, Integer> cantidad;
 
 	@FXML
 	private Button crearButton;

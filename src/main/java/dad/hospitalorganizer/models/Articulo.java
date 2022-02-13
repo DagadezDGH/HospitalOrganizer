@@ -5,15 +5,17 @@ public class Articulo {
  String nombre;
  String descripcion;
  String ubicacion;
+ String proveedor;
  int cantidad;
  
  
-public Articulo(int codArticulo, String nombre, String descripcion, String ubicacion, int cantidad) {
+public Articulo(int codArticulo, String nombre, String descripcion, String ubicacion, int cantidad, String proveedor) {
 	this.codArticulo=codArticulo;
 	this.nombre=nombre;
 	this.descripcion=descripcion;
 	this.ubicacion=ubicacion;
 	this.cantidad=cantidad;
+	this.proveedor= proveedor;
 }
 public int getCodArticulo() {
 	return codArticulo;
@@ -44,5 +46,11 @@ public int getCantidad() {
 }
 public void setCantidad(int cantidad) {
 	this.cantidad = cantidad;
+}
+public String getProveedor() {
+	return proveedor;
+}
+public void setProveedor(String proveedor) {
+	this.proveedor = proveedor;
 }
 }

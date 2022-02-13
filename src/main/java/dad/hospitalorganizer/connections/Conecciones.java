@@ -14,6 +14,7 @@ public class Conecciones {
 	public Conecciones() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
+//			conexion = DriverManager.getConnection("jdbc:mysql://atlas.profesionalhosting.com:3306/dmzeytnr_","twodavid","");
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hospitaldb","root","");
 		} catch (ClassNotFoundException e) {
 			Alert alert = new Alert(AlertType.ERROR);

@@ -3,10 +3,22 @@ package dad.hospitalorganizer.controller;
 import java.io.IOException;
 
 import java.net.URL;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import dad.hospitalorganizer.connections.Conecciones;
 import dad.hospitalorganizer.main.App;
 import dad.hospitalorganizer.models.Articulo;
+import dad.hospitalorganizer.models.EntradaArticulo;
+import dad.hospitalorganizer.models.Proveedor;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,36 +31,38 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class EntradaFormController implements Initializable {
+	private Conecciones Database;
+	private ObjectProperty<Articulo> articulo = new SimpleObjectProperty<>();
+	private ListProperty<String> articulosProperty = new SimpleListProperty<>(FXCollections.observableArrayList());
+	private ListProperty<Proveedor> proveedorProperty = new SimpleListProperty<>(FXCollections.observableArrayList());
+   
 	
+	@FXML
+    private Button anadirButton;
+
 	@FXML
 	private GridPane view;
 
 	@FXML
-	private ComboBox<?> proveedorBox;
+	private ComboBox<Proveedor> proveedorBox;
 
 	@FXML
-	private ComboBox<Articulo> articulosBox;
+	private ComboBox<String> articulosBox;
 
 	@FXML
 	private TextField cantidadText;
 
 	@FXML
-	private TableView<?> tablaEntradaArticulo;
+	private TableView<EntradaArticulo> tablaEntradaArticulo;
 
 	@FXML
-	private TableColumn<?, ?> IdColumn;
+	private TableColumn<EntradaArticulo, Integer> idColumn;
 
 	@FXML
-	private TableColumn<?, ?> articuloColumn;
+	private TableColumn<EntradaArticulo, Integer> proveedorColumn;
 
 	@FXML
-	private TableColumn<?, ?> entradaColumn;
-
-	@FXML
-	private TableColumn<?, ?> cantidadColumn;
-
-	@FXML
-	private TableColumn<?, ?> caducidadColumn;
+	private TableColumn<EntradaArticulo, Date> fechaColumn;
 
 	@FXML
 	private Button crearButton;
@@ -58,8 +72,24 @@ public class EntradaFormController implements Initializable {
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-
+		Database = new Conecciones();
+		
+		idColumn.setCellValueFactory(null);
+		proveedorColumn.setCellValueFactory(null);
+		fechaColumn.setCellValueFactory(null);
+		
+		
+		
+		
+		articulosBox.itemsProperty().bind(articulosProperty);
+		proveedorBox.itemsProperty().bind(proveedorProperty);
+		
+//		articulo.addListener((o, ov, nv) -> onArticuloChanged(o, ov, nv));
+		try {
+			mostrarArticulos();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public EntradaFormController() throws IOException {
@@ -67,9 +97,15 @@ public class EntradaFormController implements Initializable {
 		loader.setController(this);
 		loader.load();
 	}
+	
+    @FXML
+    void onClickAnadir(ActionEvent event) {
 
+    }
+    
 	@FXML
 	void onClickCrear(ActionEvent event) {
+		
 	}
 	public GridPane getView() {
 		return view;
@@ -78,4 +114,13 @@ public class EntradaFormController implements Initializable {
     void onVolverAction(ActionEvent event) {
     	App.goToMain();
     }
+	public void mostrarArticulos() throws SQLException {
+		PreparedStatement lista = Database.conexion.prepareStatement("select * from Articulos");
+		ResultSet resultado = lista.executeQuery();
+		while (resultado.next()) {
+			 
+			articulosProperty.add(resultado.getString("nombre")
+					);
+		}
+	}
 }

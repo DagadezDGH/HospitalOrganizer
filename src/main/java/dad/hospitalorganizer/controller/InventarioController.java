@@ -62,6 +62,9 @@ public class InventarioController implements Initializable {
 
 	@FXML
 	private TableColumn<Articulo, String> cantidadColumn;
+	
+	@FXML
+	private TableColumn<Articulo, String> proveedorColumn;
 
 	@FXML
 	private Button crearButton;
@@ -85,7 +88,7 @@ public class InventarioController implements Initializable {
 		descripcionColumn.setCellValueFactory(v -> new SimpleStringProperty(v.getValue().getDescripcion()));
 		ubicacionColumn.setCellValueFactory(v -> new SimpleStringProperty(v.getValue().getUbicacion()));
 		cantidadColumn.setCellValueFactory(v -> new SimpleStringProperty("" + v.getValue().getCantidad()));
-
+		proveedorColumn.setCellValueFactory(v -> new SimpleStringProperty(""+ v.getValue().getProveedor()));
 		tablaArticulos.itemsProperty().bind(listaArticulos);
 		tablaArticulos.getSelectionModel().selectedItemProperty().addListener((ob, ol, n) -> {
 			if (n != null) {
@@ -186,12 +189,13 @@ public class InventarioController implements Initializable {
 	}
 
 	public void actualizar() throws SQLException {
-		PreparedStatement lista = Database.conexion.prepareStatement("select * from articulos");
+		listArticulos.clear();
+		PreparedStatement lista = Database.conexion.prepareStatement("select * from Articulos");
 		ResultSet resultado = lista.executeQuery();
 		while (resultado.next()) {
 			listArticulos.add(new Articulo(resultado.getInt("codArticulo"), resultado.getString("nombre"),
 					resultado.getString("descripcion"), resultado.getString("ubicacion"),
-					resultado.getInt("cantidad")));
+					resultado.getInt("cantidad"), resultado.getString("proveedor")));
 		}
 	}
 

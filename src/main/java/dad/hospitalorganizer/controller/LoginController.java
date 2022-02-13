@@ -40,7 +40,7 @@ public class LoginController implements Initializable{
 
     @FXML
     void onClickEntrar(ActionEvent event) {
-
+    	
     }
     
 	public GridPane getView() {
