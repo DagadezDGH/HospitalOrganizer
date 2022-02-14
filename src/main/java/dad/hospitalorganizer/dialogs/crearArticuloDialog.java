@@ -5,17 +5,14 @@ package dad.hospitalorganizer.dialogs;
  */
 
 import java.io.IOException;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import dad.hospitalorganizer.connections.Conecciones;
 import dad.hospitalorganizer.models.Articulo;
-import dad.hospitalorganizer.models.Proveedor;
-
 import java.util.Optional;
-
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -31,7 +28,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-
 
 public class crearArticuloDialog extends Dialog<Articulo> {
 
@@ -107,29 +103,27 @@ public class crearArticuloDialog extends Dialog<Articulo> {
 		confirmation.setHeaderText("¿Seguro que quieres insertar este articulo?");
 		confirmation.setContentText("Datos: \n  " + "Nombre del articulo: " + nombretxt.getText() + "\n Ubicacion: "
 				+ ubicaciontxt.getText() + "\n Cantidad: " + cantidadtxt.getText() + "\n Descripcion: "
-				+ descripciontxt.getText()
-				+"\n Proveedor: " + proveedorBox.getSelectionModel().getSelectedItem() );
-		
-		
+				+ descripciontxt.getText() + "\n Proveedor: " + proveedorBox.getSelectionModel().getSelectedItem());
+
 		Optional<ButtonType> result = confirmation.showAndWait();
 		if (result.get() == ButtonType.OK) {
 			try {
-				
-				PreparedStatement cod = conections.conexion.prepareStatement("select codProveedor from Proveedores where nombre=" +"'"+ proveedorBox.getSelectionModel().getSelectedItem().toString()+"'");
+
+				PreparedStatement cod = conections.conexion
+						.prepareStatement("select codProveedor from Proveedores where nombre=" + "'"
+								+ proveedorBox.getSelectionModel().getSelectedItem().toString() + "'");
 				ResultSet resultado = cod.executeQuery();
 				while (resultado.next()) {
 					proveedorProperty.add(resultado.getString("codProveedor"));
 				}
-				
-				
-				System.out.println(proveedorProperty.getValue().toString().replace("[","").replace("]",""));
+
 				PreparedStatement prep = conections.conexion.prepareStatement(
 						"insert into articulos ( nombre, ubicacion, cantidad, descripcion, proveedor) values ((?), (?), (?), (?), (?))");
 				prep.setString(1, nombretxt.getText());
 				prep.setString(2, ubicaciontxt.getText());
 				prep.setInt(3, Integer.parseInt(cantidadtxt.getText()));
 				prep.setString(4, descripciontxt.getText());
-				prep.setString(5, proveedorProperty.getValue().toString().replace("[","").replace("]",""));
+				prep.setString(5, proveedorProperty.get(0));
 				prep.executeUpdate();
 
 			} catch (SQLException e) {
