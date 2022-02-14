@@ -8,14 +8,26 @@ public class Entrada {
 	 String dni;
 	 Date fecha;
 	 boolean comprobar;
-	 public Entrada(int codEntrada, int codProveedor, String dni, Date fecha, boolean comprobar) {
+	 String proveedor;
+
+	public Entrada(int codEntrada, int codProveedor, String dni, Date fecha, boolean comprobar) {
 			this.codEntrada=codEntrada;
 			this.codProveedor=codProveedor;
 			this.dni=dni;
 			this.fecha=fecha;
 			this.comprobar=comprobar;
 		}
-	 
+	 public Entrada(int codEntrada, String nombre,Date fecha) {
+			this.codEntrada=codEntrada;
+			this.proveedor=nombre;
+			this.fecha=fecha;
+		}
+	 public String getProveedor() {
+		return proveedor;
+	}
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
+	}
 	public int getCodEntrada() {
 		return codEntrada;
 	}
