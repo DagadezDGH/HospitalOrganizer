@@ -72,7 +72,7 @@ public class crearEntradaDialog extends Dialog<Entrada>{
 				Alert confirmation = new Alert(AlertType.CONFIRMATION);
 				confirmation.setTitle("CONFIRMACION");
 				confirmation.setHeaderText("¿Seguro que quieres crear esta entrada?");
-
+				
 				Optional<ButtonType> result = confirmation.showAndWait();
 				if (result.get() == ButtonType.OK) {
 				} else {

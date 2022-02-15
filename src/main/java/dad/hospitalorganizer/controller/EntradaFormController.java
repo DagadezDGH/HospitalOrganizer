@@ -100,7 +100,9 @@ public class EntradaFormController implements Initializable {
 			System.out.println("Valor viejo"+articuloProperty.getValue());
 		}
 		if (nv!=null) {
+			cantidadText.clear();
 			articuloProperty.clear();
+			//caducidadDatePicker;
 			getArticulos();
 			articulosBox.itemsProperty().bind(articuloProperty);
 			System.out.println("Valor nuevo "+articuloProperty.getValue());
@@ -127,26 +129,39 @@ public class EntradaFormController implements Initializable {
 
     @FXML
     void onAnadirAction(ActionEvent event) throws SQLException {
-    	PreparedStatement list = Database.conexion.prepareStatement("select * from Articulos where nombre=?");
-		list.setString(1, articulosBox.getSelectionModel().getSelectedItem());
-		ResultSet result = list.executeQuery();
-		while (result.next()) {
-		artic=result.getInt("codArticulo");
-		}
-    	System.out.println(tablaEntradaArticulo.getSelectionModel().getSelectedItem().getCodEntrada());
-    	System.out.println(cantidad.getValue());
-    	System.out.println(caducidadDatePicker.getValue()+" "+artic);
-    try {
-		PreparedStatement lista = Database.conexion.prepareStatement("INSERT INTO entradaarticulo(codArticulo, codEntrada, cantidad, caducidad)values ((?),(?),(?),(?))");
-		lista.setInt(1, artic);
-		lista.setInt(2, tablaEntradaArticulo.getSelectionModel().getSelectedItem().getCodEntrada());
-		lista.setInt(3, cantidad.getValue());
-		lista.setString(4, caducidadDatePicker.getValue()+"");
-		lista.executeUpdate();
-		System.out.println("Insertado");
-    	} catch (Exception e) {
-    		System.out.println("no insertado");
-    	} 
+    	Alert confirmation = new Alert(AlertType.CONFIRMATION);
+		confirmation.setTitle("CONFIRMACION");
+		confirmation.setHeaderText("¿Seguro que quieres añadir este articulo?");
+
+		Optional<ButtonType> resultad = confirmation.showAndWait();
+		if (resultad.get() == ButtonType.OK) {
+	    	PreparedStatement list = Database.conexion.prepareStatement("select * from Articulos where nombre=?");
+			list.setString(1, articulosBox.getSelectionModel().getSelectedItem());
+			ResultSet result = list.executeQuery();
+			while (result.next()) {
+			artic=result.getInt("codArticulo");
+			}
+	    	System.out.println(tablaEntradaArticulo.getSelectionModel().getSelectedItem().getCodEntrada());
+	    	System.out.println(cantidad.getValue());
+	    	System.out.println(caducidadDatePicker.getValue()+" "+artic);
+	    try {
+			PreparedStatement lista = Database.conexion.prepareStatement("INSERT INTO entradaarticulo(codArticulo, codEntrada, cantidad, caducidad)values ((?),(?),(?),(?))");
+			lista.setInt(1, artic);
+			lista.setInt(2, tablaEntradaArticulo.getSelectionModel().getSelectedItem().getCodEntrada());
+			lista.setInt(3, cantidad.getValue());
+			lista.setString(4, caducidadDatePicker.getValue()+"");
+			lista.executeUpdate();
+			System.out.println("Insertado");
+	    	} catch (Exception e) {
+	    		System.out.println("no insertado");
+	    	}
+		} else {
+		Alert confirm = new Alert(AlertType.ERROR);
+		confirm.setTitle("ERROR");
+		confirm.setHeaderText("Error en la entrada");
+		confirm.setContentText("Asegúrese de que la escribió correctamente.");}
+    	
+ 
     }
     @FXML
     void onVolverAction(ActionEvent event) {
