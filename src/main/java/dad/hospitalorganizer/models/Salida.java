@@ -6,11 +6,11 @@ public class Salida {
 	 int codSalida;
 	 String lugar;
 	 String motivo;
-	 int codPaciente;
+	 String codPaciente;
 	 int codPersonal;
 	 Date fechaSalida;
 	 boolean comprobar;
-	 public Salida(int codSalida,  String lugar, int codPaciente,  int codPersonal, Date fechaSalida, boolean comprobar) {
+	 public Salida(int codSalida,  String lugar, String codPaciente,  int codPersonal, Date fechaSalida, boolean comprobar) {
 			this.codSalida=codSalida;
 			this.lugar=lugar;
 			this.codPaciente=codPaciente;
@@ -18,7 +18,13 @@ public class Salida {
 			this.fechaSalida= fechaSalida;
 			this.comprobar=comprobar;
 		}
-	 
+	 public Salida(int codSalida,  String lugar, String motivo, String codPaciente, Date fechaSalida) {
+			this.codSalida=codSalida;
+			this.lugar=lugar;
+			this.motivo =motivo;
+			this.codPaciente=codPaciente;
+			this.fechaSalida= fechaSalida;
+		}
 	 public int getCodSalida() {
 		return codSalida;
 	}
@@ -37,10 +43,10 @@ public class Salida {
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
 	}
-	public int getCodPaciente() {
+	public String getCodPaciente() {
 		return codPaciente;
 	}
-	public void setCodPaciente(int codPaciente) {
+	public void setCodPaciente(String codPaciente) {
 		this.codPaciente = codPaciente;
 	}
 	public int getCodPersonal() {

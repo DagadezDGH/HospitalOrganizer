@@ -10,6 +10,7 @@ import dad.hospitalorganizer.controller.LoginController;
 import dad.hospitalorganizer.controller.MainController;
 import dad.hospitalorganizer.controller.SalidasController;
 import dad.hospitalorganizer.controller.SalidasFormController;
+import dad.hospitalorganizer.models.Usuario;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,8 +19,9 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application {
-	
 	private static Stage primaryStage; 
+	
+	public static Usuario usuario = new Usuario();
 	
 	private EntradaController entradaController;
 	private EntradaFormController entradaFormController;
@@ -58,7 +60,7 @@ public class App extends Application {
 		salidas = new Scene(salidasController.getView());
 		salidasForm = new Scene(salidasFormController.getView());
 		
-		primaryStage.setScene(main);
+		primaryStage.setScene(login);
 		primaryStage.setTitle("HospitalOrganizer");
 		primaryStage.getIcons().add(new Image("/images/icon-64x64.png"));
 		primaryStage.show();
@@ -86,6 +88,7 @@ public class App extends Application {
 	public static void goToSalidasForm() {
 		primaryStage.setScene(salidasForm);
 	}
+	
 	public static void error(String header) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.initOwner(primaryStage);
