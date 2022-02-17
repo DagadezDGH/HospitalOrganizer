@@ -4,7 +4,6 @@ package dad.hospitalorganizer.dialogs;
  * @author Carlos Javier Cosme Melian
  */
 
-
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,8 +14,6 @@ import java.util.Optional;
 
 import dad.hospitalorganizer.connections.Conecciones;
 import dad.hospitalorganizer.models.Articulo;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,46 +22,39 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class modificarArticuloDialog extends Dialog<Articulo> {
 
 	// Cargamos los elementos del FXML
-	
 
-    @FXML
-    private TextArea descripciontxt;
+	@FXML
+	private TextArea descripciontxt;
 
-    @FXML
-    private TextField nombretxt;
+	@FXML
+	private TextField nombretxt;
 
-    @FXML
-    private TextField cantidadtxt;
+	@FXML
+	private TextField cantidadtxt;
 
-    @FXML
-    private TextField ubicaciontxt;
-	
+	@FXML
+	private TextField ubicaciontxt;
 
 	// Creamos los elementos del modelo
 
 	private ButtonType okButton, cancelButton;
-	
-	
-	
-        private Articulo submited;
+
+	private Articulo submited;
 
 	ObservableList<String> hotelesList = FXCollections.observableArrayList(new ArrayList<String>());
 	insertDialogModel model = new insertDialogModel();
 
-        
 	public modificarArticuloDialog(Articulo submited) throws IOException {
-                
-                this.submited = submited;
+
+		this.submited = submited;
 
 		setTitle("Modificar articulo");
 		setHeaderText("Cambia los datos:");
@@ -79,60 +69,35 @@ public class modificarArticuloDialog extends Dialog<Articulo> {
 		fxmlLoader.setController(this);
 		getDialogPane().setContent(fxmlLoader.load());
 
-		
+		nombretxt.setText(submited.getNombre());
+		descripciontxt.setText(submited.getDescripcion());
+		cantidadtxt.setText(Integer.toString(submited.getCantidad()));
+		ubicaciontxt.setText(submited.getUbicacion());
 
-			
-			
-                       
+		setResultConverter(bt -> {
 
-			
-                        
-			nombretxt.setText(submited.getNombre());        
-			descripciontxt.setText(submited.getDescripcion());
-			cantidadtxt.setText(Integer.toString(submited.getCantidad()));
-			ubicaciontxt.setText(submited.getUbicacion());
-                                                			
-                 
-		
-			 PreparedStatement preparedHot;
-			
-			 
-			setResultConverter(bt -> {
+			if (bt.getButtonData() == ButtonData.OK_DONE) {
+				onModifyBttn(ButtonData.OK_DONE);
+			}
 
-				if (bt.getButtonData() == ButtonData.OK_DONE) {
-					onModifyBttn(ButtonData.OK_DONE);
-				}
-
-				else {
-					return null;
-				}
+			else {
 				return null;
-			});
-			
+			}
+			return null;
+		});
 
 	}
-            
-            
-	
-
-	
 
 	private void onModifyBttn(ButtonData data) {
-
 
 		Alert confirmation = new Alert(AlertType.CONFIRMATION);
 		confirmation.setTitle("CONFIRMACION");
 		confirmation.setHeaderText("¿Seguro que quieres modificiar esta estancia?");
-		confirmation.setContentText("Antiguos valores: "
-				+ "\n Nombre del articulo: "+ submited.getNombre() +"\n"
-				+ "\n Ubicacion: " + submited.getUbicacion() +"\n"
-				+ "\n Cantidad: " + submited.getCantidad()+"\n"
-				+ "\n Descripcion: " + submited.getDescripcion()+
-                        "\n Nuevos valores: "+ 
-                "\n Nombre del articulo: "+ nombretxt.getText() +"\n"
-        		+ "\n Ubicacion: " + ubicaciontxt.getText() +"\n"
-        		+ "\n Cantidad: " + cantidadtxt.getText()+"\n"
-        		+ "\n Descripcion: " + descripciontxt.getText());
+		confirmation.setContentText("Antiguos valores: " + "\n Nombre del articulo: " + submited.getNombre() + "\n"
+				+ "\n Ubicacion: " + submited.getUbicacion() + "\n" + "\n Cantidad: " + submited.getCantidad() + "\n"
+				+ "\n Descripcion: " + submited.getDescripcion() + "\n Nuevos valores: " + "\n Nombre del articulo: "
+				+ nombretxt.getText() + "\n" + "\n Ubicacion: " + ubicaciontxt.getText() + "\n" + "\n Cantidad: "
+				+ cantidadtxt.getText() + "\n" + "\n Descripcion: " + descripciontxt.getText());
 
 		Optional<ButtonType> result = confirmation.showAndWait();
 		if (result.get() == ButtonType.OK) {
@@ -140,17 +105,15 @@ public class modificarArticuloDialog extends Dialog<Articulo> {
 
 				Conecciones conections = new Conecciones();
 
-					PreparedStatement prep = conections.conexion.prepareStatement(
-							"update articulos set nombre = (?),ubicacion = (?),"
-                                                + "cantidad = (?), descripcion = (?) where codArticulo = (?)");
-					prep.setString(1, nombretxt.getText());
-					prep.setString(2, ubicaciontxt.getText());
-					prep.setInt(3, Integer.parseInt( cantidadtxt.getText()));
-					prep.setString(4, descripciontxt.getText());
-                    prep.setInt(5, submited.getCodArticulo());
-					prep.executeUpdate();
-
-				
+				PreparedStatement prep = conections.conexion
+						.prepareStatement("update articulos set nombre = (?),ubicacion = (?),"
+								+ "cantidad = (?), descripcion = (?) where codArticulo = (?)");
+				prep.setString(1, nombretxt.getText());
+				prep.setString(2, ubicaciontxt.getText());
+				prep.setInt(3, Integer.parseInt(cantidadtxt.getText()));
+				prep.setString(4, descripciontxt.getText());
+				prep.setInt(5, submited.getCodArticulo());
+				prep.executeUpdate();
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -158,6 +121,5 @@ public class modificarArticuloDialog extends Dialog<Articulo> {
 			}
 		}
 	}
-	
 
 }

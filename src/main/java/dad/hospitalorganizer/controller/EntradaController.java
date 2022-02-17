@@ -58,6 +58,6 @@ public class EntradaController implements Initializable{
 
 	    @FXML
 	    void onClickVerPedido(ActionEvent event) {
-
+	    	App.goToEntradaVer();
 	    }
 }

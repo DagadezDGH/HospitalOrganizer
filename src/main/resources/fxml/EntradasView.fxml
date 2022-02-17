@@ -40,7 +40,7 @@
       </HBox>
       <HBox alignment="CENTER" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnSpan="2" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="nuevoPedidoButton" mnemonicParsing="false" onAction="#onClickNuevoPedido" text="Nuevo pedido">
+            <Button fx:id="nuevoPedidoButton" mnemonicParsing="false" onAction="#onClickNuevoPedido" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Nuevo pedido">
                <font>
                   <Font size="18.0" />
                </font>
@@ -58,7 +58,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="verPedidoButton" mnemonicParsing="false" onAction="#onClickVerPedido" text="Ver pedidos">
+            <Button fx:id="verPedidoButton" mnemonicParsing="false" onAction="#onClickVerPedido" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Ver pedidos">
                <font>
                   <Font size="18.0" />
                </font>

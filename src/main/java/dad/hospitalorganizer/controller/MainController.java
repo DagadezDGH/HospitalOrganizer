@@ -59,7 +59,6 @@ public class MainController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 	bienvenido.bind(App.usuario.nombreProperty());
 	bienvenidoLabel.textProperty().bind(bienvenido);
-//	bienvenidoLabel.setText("Bienvenido " + bienvenido.getValue());
 	}
 	
     @FXML

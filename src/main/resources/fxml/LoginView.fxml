@@ -38,7 +38,7 @@
       </HBox>
       <HBox alignment="CENTER" styleClass="green" stylesheets="@../css/Clasico.css" GridPane.columnSpan="2" GridPane.rowIndex="3">
          <children>
-            <Button fx:id="entrarButton" mnemonicParsing="false" onAction="#onClickEntrar" text="Entrar" />
+            <Button fx:id="entrarButton" mnemonicParsing="false" onAction="#onClickEntrar" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Entrar" />
          </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" styleClass="green" stylesheets="@../css/Clasico.css" GridPane.rowIndex="1">

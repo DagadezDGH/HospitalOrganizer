@@ -44,25 +44,7 @@
             <Insets />
          </GridPane.margin>
       </HBox>
-      <Button fx:id="verSalidaButton" mnemonicParsing="false" onAction="#onClickVerSalida" text="Ver salidas" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-         <graphic>
-            <ImageView fx:id="iconoSalidasVer" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/view_search_find_9565.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin>
-      </Button>
-      <Button fx:id="nuevoSalidaButton" mnemonicParsing="false" onAction="#onClickNuevoSalida" text="Nueva salida" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <Button fx:id="nuevoSalidaButton" mnemonicParsing="false" onAction="#onClickNuevoSalida" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Nueva salida" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <font>
             <Font size="18.0" />
          </font>
@@ -73,6 +55,24 @@
             <ImageView fx:id="iconoSalidasNuevo" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/plus_insert_add_new_icon_181537.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="verSalidaButton" mnemonicParsing="false" onAction="#onClickVerSalida" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Ver salidas" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <graphic>
+            <ImageView fx:id="iconoSalidasVer" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/view_search_find_9565.png" />
                </image>
             </ImageView>
          </graphic>

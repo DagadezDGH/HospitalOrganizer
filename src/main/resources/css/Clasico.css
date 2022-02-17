@@ -5,4 +5,17 @@
 }
 .green{
 	-fx-background-color:lightgreen;
+} 
+.buttons{
+	-fx-background-color:lightgrey;
+}
+.buttons:focused{
+	-fx-border-color:white;
+}
+.buttons:armed{
+	-fx-border-color:yellow;
+} 
+.buttons:pressed{
+	-fx-text-fill:lightblack;
+	-fx-background-color:black;	
 }

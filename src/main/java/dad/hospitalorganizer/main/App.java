@@ -5,6 +5,7 @@ import dad.hospitalorganizer.controller.EntradaController;
 
 
 import dad.hospitalorganizer.controller.EntradaFormController;
+import dad.hospitalorganizer.controller.EntradaVerController;
 import dad.hospitalorganizer.controller.InventarioController;
 import dad.hospitalorganizer.controller.LoginController;
 import dad.hospitalorganizer.controller.MainController;
@@ -25,6 +26,7 @@ public class App extends Application {
 	
 	private EntradaController entradaController;
 	private EntradaFormController entradaFormController;
+	private EntradaVerController entradaVerController;
 	private InventarioController inventarioControlller;
 	private SalidasController salidasController;
 	private LoginController loginController;
@@ -35,6 +37,7 @@ public class App extends Application {
 	static Scene main;
 	static Scene entrada;
 	static Scene entradaForm;
+	static Scene entradaVer;
 	static Scene salidas;
 	static Scene salidasForm;
 	static Scene login;
@@ -46,6 +49,7 @@ public class App extends Application {
 		
 		entradaController=new EntradaController();
 		entradaFormController=new EntradaFormController();
+		entradaVerController=new EntradaVerController();
 		inventarioControlller=new InventarioController();
 		salidasController=new SalidasController();
 		salidasFormController=new SalidasFormController();
@@ -57,6 +61,7 @@ public class App extends Application {
 		inventario = new Scene(inventarioControlller.getView());
 		entrada = new Scene(entradaController.getView());
 		entradaForm = new Scene(entradaFormController.getView());
+		entradaVer = new Scene(entradaVerController.getView());
 		salidas = new Scene(salidasController.getView());
 		salidasForm = new Scene(salidasFormController.getView());
 		
@@ -81,6 +86,9 @@ public class App extends Application {
 	}
 	public static void goToEntradaForm() {
 		primaryStage.setScene(entradaForm);
+	}
+	public static void goToEntradaVer() {
+		primaryStage.setScene(entradaVer);
 	}
 	public static void goToSalidas() {
 		primaryStage.setScene(salidas);

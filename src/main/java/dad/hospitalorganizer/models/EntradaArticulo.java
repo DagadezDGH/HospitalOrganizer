@@ -8,14 +8,27 @@ public class EntradaArticulo {
 	 int codEntrada;
 	 int cantidad;
 	 Date caducidad;
-	 public EntradaArticulo(int codEntradaArticulo, int codArticulo, int codEntrada, int cantidad, Date caducidad) {
+	 String nombreArticulo;
+
+	public EntradaArticulo(int codEntradaArticulo, int codArticulo, int codEntrada, int cantidad, Date caducidad) {
 			this.codArticulo=codArticulo;
 			this.codEntradaArticulo=codEntradaArticulo;
 			this.codEntrada=codEntrada;
 			this.caducidad=caducidad;
 			this.cantidad=cantidad;
 		}
-	 public int getCodEntradaArticulo() {
+	 public EntradaArticulo(String nombreArticulo, int cantidad, Date caducidad) {
+		    this.nombreArticulo=nombreArticulo;
+			this.caducidad=caducidad;
+			this.cantidad=cantidad;
+	}
+	 public String getNombreArticulo() {
+		return nombreArticulo;
+	}
+	public void setNombreArticulo(String nombreArticulo) {
+		this.nombreArticulo = nombreArticulo;
+	}
+	public int getCodEntradaArticulo() {
 		return codEntradaArticulo;
 	}
 	public void setCodEntradaArticulo(int codEntradaArticulo) {

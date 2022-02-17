@@ -23,7 +23,7 @@
    <children>
       <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.hgrow="ALWAYS">
         <items>
-          <Button fx:id="pacientesButton" mnemonicParsing="false" onAction="#onClickPacientes" text="Pacientes">
+          <Button fx:id="pacientesButton" mnemonicParsing="false" onAction="#onClickPacientes" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Pacientes">
                <graphic>
                   <ImageView fx:id="pacientesIcono" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -32,7 +32,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="inventarioButton" mnemonicParsing="false" onAction="#onClickInventario" text="Inventario">
+            <Button fx:id="inventarioButton" mnemonicParsing="false" onAction="#onClickInventario" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Inventario">
                <graphic>
                   <ImageView fx:id="inventarioIcono" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,7 +41,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="entradasButton" mnemonicParsing="false" onAction="#onClickEntradas" text="Entradas">
+            <Button fx:id="entradasButton" mnemonicParsing="false" onAction="#onClickEntradas" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Entradas">
                <graphic>
                   <ImageView fx:id="entradasIcono" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -50,7 +50,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="salidasButton" layoutX="290.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickSalidas" text="Salidas">
+            <Button fx:id="salidasButton" layoutX="290.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickSalidas" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Salidas">
                <graphic>
                   <ImageView fx:id="salidasIcono" pickOnBounds="true" preserveRatio="true">
                      <image>
