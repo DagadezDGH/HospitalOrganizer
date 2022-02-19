@@ -2,6 +2,7 @@ package dad.hospitalorganizer.bot;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
+import com.pengrad.telegrambot.request.SendDocument;
 import com.pengrad.telegrambot.request.SendMessage;
 
 public class BotHospital {
@@ -15,6 +16,7 @@ public class BotHospital {
 			if (u.message().text().equals("Comando1")) {
 				
 				bot.execute(new SendMessage(u.message().chat().id(), "Resultado Query1"));
+				//bot.execute(new SendDocument(chatId, document))
 			}
 		});
 		return UpdatesListener.CONFIRMED_UPDATES_ALL;
