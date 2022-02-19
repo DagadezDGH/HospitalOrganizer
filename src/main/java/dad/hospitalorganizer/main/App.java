@@ -9,6 +9,8 @@ import dad.hospitalorganizer.controller.EntradaVerController;
 import dad.hospitalorganizer.controller.InventarioController;
 import dad.hospitalorganizer.controller.LoginController;
 import dad.hospitalorganizer.controller.MainController;
+import dad.hospitalorganizer.controller.SalidaVerArticuloController;
+import dad.hospitalorganizer.controller.SalidaVerController;
 import dad.hospitalorganizer.controller.SalidasController;
 import dad.hospitalorganizer.controller.SalidasFormController;
 import dad.hospitalorganizer.models.Usuario;
@@ -32,6 +34,8 @@ public class App extends Application {
 	private LoginController loginController;
 	private MainController mainController;
 	private SalidasFormController salidasFormController;
+	private SalidaVerController salidasVerController;
+	private SalidaVerArticuloController salidaVerArticuloController;
 	
 	static Scene inventario;
 	static Scene main;
@@ -40,6 +44,8 @@ public class App extends Application {
 	static Scene entradaVer;
 	static Scene salidas;
 	static Scene salidasForm;
+	static Scene salidasVer;
+	static Scene salidasVerArticulo;
 	static Scene login;
 
 	@Override
@@ -52,6 +58,8 @@ public class App extends Application {
 		entradaVerController=new EntradaVerController();
 		inventarioControlller=new InventarioController();
 		salidasController=new SalidasController();
+		salidasVerController=new SalidaVerController();
+		salidaVerArticuloController=new SalidaVerArticuloController();
 		salidasFormController=new SalidasFormController();
 		loginController = new LoginController();
 		mainController = new MainController();
@@ -64,6 +72,8 @@ public class App extends Application {
 		entradaVer = new Scene(entradaVerController.getView());
 		salidas = new Scene(salidasController.getView());
 		salidasForm = new Scene(salidasFormController.getView());
+		salidasVer =new Scene(salidasVerController.getView());
+		salidasVerArticulo =new Scene(salidaVerArticuloController.getView());
 		
 		primaryStage.setScene(login);
 		primaryStage.setTitle("HospitalOrganizer");
@@ -95,6 +105,9 @@ public class App extends Application {
 	}
 	public static void goToSalidasForm() {
 		primaryStage.setScene(salidasForm);
+	}
+	public static void goToSalidasVer() {
+		primaryStage.setScene(salidasVer);
 	}
 	
 	public static void error(String header) {

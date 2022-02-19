@@ -52,7 +52,7 @@ public class SalidasController implements Initializable {
 
 	@FXML
 	void onClickVerSalida(ActionEvent event) {
-
+		App.goToSalidasVer();
 	}
 
 	public GridPane getView() {

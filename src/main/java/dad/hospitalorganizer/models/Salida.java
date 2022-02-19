@@ -7,17 +7,20 @@ public class Salida {
 	 String lugar;
 	 String motivo;
 	 String codPaciente;
-	 int codPersonal;
+	 String codPersonal;
 	 Date fechaSalida;
-	 boolean comprobar;
-	 public Salida(int codSalida,  String lugar, String codPaciente,  int codPersonal, Date fechaSalida, boolean comprobar) {
+	 int comprobar;
+	 
+	 public Salida(int codSalida,  String lugar, String motivo, String codPaciente,  String codPersonal, Date fechaSalida, int comprobar) {
 			this.codSalida=codSalida;
 			this.lugar=lugar;
+			this.motivo =motivo;
 			this.codPaciente=codPaciente;
 			this.codPersonal=codPersonal;
 			this.fechaSalida= fechaSalida;
 			this.comprobar=comprobar;
 		}
+	 
 	 public Salida(int codSalida,  String lugar, String motivo, String codPaciente, Date fechaSalida) {
 			this.codSalida=codSalida;
 			this.lugar=lugar;
@@ -49,10 +52,10 @@ public class Salida {
 	public void setCodPaciente(String codPaciente) {
 		this.codPaciente = codPaciente;
 	}
-	public int getCodPersonal() {
+	public String getCodPersonal() {
 		return codPersonal;
 	}
-	public void setCodPersonal(int codPersonal) {
+	public void setCodPersonal(String codPersonal) {
 		this.codPersonal = codPersonal;
 	}
 	public Date getFechaSalida() {
@@ -60,11 +63,5 @@ public class Salida {
 	}
 	public void setFechaSalida(Date fechaSalida) {
 		this.fechaSalida = fechaSalida;
-	}
-	public boolean isComprobar() {
-		return comprobar;
-	}
-	public void setComprobar(boolean comprobar) {
-		this.comprobar = comprobar;
 	}
 }
