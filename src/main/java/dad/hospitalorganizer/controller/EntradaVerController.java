@@ -5,9 +5,12 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import dad.hospitalorganizer.connections.Conecciones;
+import dad.hospitalorganizer.informes.GenerarPDF;
 import dad.hospitalorganizer.main.App;
 import dad.hospitalorganizer.models.Entrada;
 import dad.hospitalorganizer.models.EntradaArticulo;
@@ -25,12 +28,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
+import net.sf.jasperreports.engine.JRException;
 
 public class EntradaVerController implements Initializable {
 	private Conecciones Database=new Conecciones();
 	private ListProperty<String> proveedorProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
 	private ListProperty<String> fechaEntradaProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
 	private ListProperty<EntradaArticulo> listEntradaArticulo=new SimpleListProperty<EntradaArticulo>(FXCollections.observableArrayList()); 
+	private List<EntradaArticulo> lista = new ArrayList<>();
 	@FXML
     private GridPane view;
 
@@ -158,7 +163,9 @@ public class EntradaVerController implements Initializable {
 		 		e.getStackTrace();
 		}}
     @FXML
-    void OnInformeAction(ActionEvent event) {
+    void OnInformeAction(ActionEvent event) throws JRException, IOException {
+    	
+    	GenerarPDF.generarPdf(getListEntradaArticulo());
     	
     }
     @FXML
@@ -169,5 +176,7 @@ public class EntradaVerController implements Initializable {
 		return view;
 	}
 	
-
+	public List<EntradaArticulo> getListEntradaArticulo() {
+		return listEntradaArticulo.get();
+	}
 }

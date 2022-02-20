@@ -44,4 +44,35 @@
 			<version>8.0.17</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>io.github.fvarrui</groupId>
+				<artifactId>javapackager</artifactId>
+				<version>1.5.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>package</goal>
+						</goals>
+						<configuration>
+							<additionalResources>
+								<additionalResource>README.md</additionalResource>
+							</additionalResources>
+							<mainClass>dad.hospitalorganizer.main.Main</mainClass>
+							<organizationName>DAD</organizationName>
+							<bundleJre>true</bundleJre>
+							<createZipball>true</createZipball>
+							<generateInstaller>true</generateInstaller>
+							<winConfig>
+								<generateMsi>false</generateMsi>
+								<icoFile>hospital72x72.ico</icoFile>
+							</winConfig>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
