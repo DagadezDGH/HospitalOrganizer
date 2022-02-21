@@ -1,6 +1,11 @@
+@font-face{
+    font-family: 'Elephant';
+    src: url('../font/ELEPHNT.TTF');
+}
 .root{
 	
 }
+
 .labels{
 	-fx-font-family:Elephant;
 }
