@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -20,37 +21,53 @@
       <RowConstraints vgrow="ALWAYS" />
    </rowConstraints>
    <children>
-      <Label text="Nombre Articulo:" GridPane.halignment="RIGHT">
+      <Label styleClass="labels" text="Nombre Articulo:" GridPane.halignment="RIGHT">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></Label>
-      <TextField id="resi" fx:id="nombretxt" styleClass="green" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1">
+      <TextField id="resi" fx:id="nombretxt" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin></TextField>
-      <Label text="Ubicación: " GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin></Label>
-      <TextField id="precio" fx:id="ubicaciontxt" styleClass="green" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin></TextField>
-      <Label text="Cantidad: " GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+         </GridPane.margin>
+         <styleClass>
+            <String fx:value="green" />
+            <String fx:value="box" />
+         </styleClass></TextField>
+      <Label styleClass="labels" text="Ubicación: " GridPane.halignment="RIGHT" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></Label>
-      <TextField id="precio" fx:id="cantidadtxt" styleClass="green" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <TextField id="precio" fx:id="ubicaciontxt" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin></TextField>
-      <Label text="Descripcion: " GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+         </GridPane.margin>
+         <styleClass>
+            <String fx:value="green" />
+            <String fx:value="box" />
+         </styleClass></TextField>
+      <Label styleClass="labels" text="Cantidad: " GridPane.halignment="RIGHT" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></Label>
-      <TextArea fx:id="descripciontxt" prefHeight="100.0" prefWidth="200.0" promptText="Descripcion del producto..." styleClass="green" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <TextField id="precio" fx:id="cantidadtxt" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin></TextArea>
+         </GridPane.margin>
+         <styleClass>
+            <String fx:value="green" />
+            <String fx:value="box" />
+         </styleClass></TextField>
+      <Label styleClass="labels" text="Descripcion: " GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <TextArea fx:id="descripciontxt" prefHeight="100.0" prefWidth="200.0" promptText="Descripcion del producto..." stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+         <styleClass>
+            <String fx:value="green" />
+            <String fx:value="box" />
+         </styleClass></TextArea>
    </children>
 </GridPane>

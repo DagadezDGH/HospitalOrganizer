@@ -1,4 +1,11 @@
 .root{
+	
+}
+.labels{
+	-fx-font-family:Elephant;
+}
+.box{
+	-fx-font-family:monospace;
 }
 .blue{
 	-fx-background-color:lightblue;
@@ -8,14 +15,52 @@
 } 
 .buttons{
 	-fx-background-color:lightgrey;
+	-fx-background-radius:5em;
+	-fx-font-size:14px;
+	-fx-background-insets:0px;
+	-fx-border-radius:5em;
 }
 .buttons:focused{
-	-fx-border-color:white;
-}
-.buttons:armed{
 	-fx-border-color:yellow;
-} 
-.buttons:pressed{
-	-fx-text-fill:lightblack;
-	-fx-background-color:black;	
 }
+.buttons:hover{
+	-fx-cursor:hand;
+	-fx-text-fill:black;
+	-fx-background-color:white;	
+	}
+.buttons:pressed{
+	-fx-text-fill:black;
+	-fx-background-color:#F1CB3C;
+	
+}
+.table{
+	-fx-text-fill:black;
+	-fx-background-color:lightblue;
+}
+.table_view{
+	-fx-text-fill:black;
+	-fx-background-color:lightblue;
+}  
+.table:focused{
+	-fx-background-color:white;
+}
+.table:hover{
+	-fx-cursor:hand;
+	-fx-text-fill:black;
+	-fx-background-color:white;	
+}
+.table .column-header-background{
+	-fx-background-color:#14BCC8;
+	-fx-background-insets:0 0 0 0;
+	-fx-padding:0 0 10 0;
+	-fx-effect: dropshadow(two-pass-boxm rgb(10,101,107),15,0.0,0.1,3)
+}
+.table .column-header, .table .filter{
+	-fx-size:40;
+	-fx-border-with:30;
+	-fx-background-color:transparent;
+}
+.view #table:hover{
+	-fx-background-color:orangered;
+}  
+	

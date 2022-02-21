@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -28,7 +29,7 @@
                   <Image url="@../images/4544854-business-comerce-delivery-shop-truck_121454.png" />
                </image>
             </ImageView>
-            <Label text="Entradas">
+            <Label styleClass="box" text="Entradas">
                <HBox.margin>
                   <Insets left="25.0" />
                </HBox.margin>
@@ -40,7 +41,7 @@
       </HBox>
       <HBox alignment="CENTER" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnSpan="2" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="nuevoPedidoButton" mnemonicParsing="false" onAction="#onClickNuevoPedido" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Nuevo pedido">
+            <Button fx:id="nuevoPedidoButton" mnemonicParsing="false" onAction="#onClickNuevoPedido" stylesheets="@../css/Clasico.css" text="Nuevo pedido">
                <font>
                   <Font size="18.0" />
                </font>
@@ -57,8 +58,12 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="buttons" />
+                  <String fx:value="labels" />
+               </styleClass>
             </Button>
-            <Button fx:id="verPedidoButton" mnemonicParsing="false" onAction="#onClickVerPedido" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Ver pedidos">
+            <Button fx:id="verPedidoButton" mnemonicParsing="false" onAction="#onClickVerPedido" stylesheets="@../css/Clasico.css" text="Ver pedidos">
                <font>
                   <Font size="18.0" />
                </font>
@@ -75,6 +80,10 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="buttons" />
+                  <String fx:value="labels" />
+               </styleClass>
             </Button>
          </children>
       </HBox>

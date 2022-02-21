@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -14,8 +15,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="view" prefHeight="400.0" prefWidth="400.0" styleClass="green" stylesheets="@../css/Clasico.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="view" prefHeight="600.0" prefWidth="600.0" styleClass="green" stylesheets="@../css/Clasico.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="NEVER" />
       <ColumnConstraints maxWidth="1.7976931348623157E308" />
@@ -25,70 +27,68 @@
       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints minHeight="10.0" vgrow="NEVER" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints vgrow="NEVER" />
+      <RowConstraints vgrow="NEVER" />
+      <RowConstraints vgrow="NEVER" />
+      <RowConstraints vgrow="NEVER" />
+      <RowConstraints vgrow="ALWAYS" />
+      <RowConstraints vgrow="NEVER" />
    </rowConstraints>
    <children>
-      <HBox alignment="CENTER" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.rowIndex="1">
-         <children>
-            <Label alignment="CENTER" text="Proveedor: " />
-         </children>
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin>
-      </HBox>
-      <ComboBox fx:id="proveedorBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </GridPane.margin></ComboBox>
-      <HBox alignment="CENTER_RIGHT" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.rowIndex="2">
-         <children>
-            <Label alignment="CENTER" text="Articulo: " />
-         </children>
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin>
-      </HBox>
-      <ComboBox fx:id="articulosBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </GridPane.margin></ComboBox>
-      <HBox alignment="CENTER_RIGHT" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.rowIndex="3">
-         <children>
-            <Label alignment="CENTER" text="Cantidad: " />
-         </children>
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin>
-      </HBox>
-      <TextField fx:id="cantidadText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <GridPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </GridPane.margin></TextField>
-      <HBox alignment="CENTER_RIGHT" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.rowIndex="4">
-         <children>
-            <Label alignment="CENTER" text="Caducidad:" />
-         </children>
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin>
-      </HBox>
-      <DatePicker fx:id="caducidadDatePicker" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <ComboBox fx:id="proveedorBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
+         <styleClass>
+            <String fx:value="blue" />
+            <String fx:value="box" />
+         </styleClass></ComboBox>
+      <ComboBox fx:id="articulosBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+         <styleClass>
+            <String fx:value="blue" />
+            <String fx:value="box" />
+         </styleClass></ComboBox>
+      <TextField fx:id="cantidadText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+         <styleClass>
+            <String fx:value="blue" />
+            <String fx:value="box" />
+         </styleClass></TextField>
+      <DatePicker fx:id="caducidadDatePicker" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <styleClass>
+            <String fx:value="blue" />
+            <String fx:value="box" />
+         </styleClass>
       </DatePicker>
-      <Button fx:id="anadirButton" mnemonicParsing="false" onAction="#onAnadirAction" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Añadir " GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-      <TableView fx:id="tablaEntradaArticulo" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5">
+      <Button fx:id="anadirButton" mnemonicParsing="false" onAction="#onAnadirAction" styleClass="buttons" stylesheets="@../css/Clasico.css" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
+         <graphic>
+            <VBox alignment="CENTER">
+               <children>
+                  <ImageView pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/businesspackagex32.png" />
+                     </image>
+                  </ImageView>
+                  <Label styleClass="box" text="Añadir" />
+               </children>
+            </VBox>
+         </graphic></Button>
+      <TableView fx:id="tablaEntradaArticulo" styleClass="table" stylesheets="@../css/Clasico.css" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4">
          <columns>
-            <TableColumn fx:id="IdEntradaColumn" prefWidth="75.0" text="Id Entrada" />
-            <TableColumn fx:id="proveedorColumn" prefWidth="75.0" text="Proveedor" />
-            <TableColumn fx:id="fechaColumn" prefWidth="75.0" text="Fecha Entrada" />
+            <TableColumn fx:id="IdEntradaColumn" minWidth="-1.0" prefWidth="75.0" styleClass="column-header" text="Id Entrada" />
+            <TableColumn fx:id="proveedorColumn" minWidth="-1.0" prefWidth="75.0" styleClass="column-header" text="Proveedor" />
+            <TableColumn fx:id="fechaColumn" minWidth="-1.0" prefWidth="75.0" styleClass="column-header" text="Fecha Entrada" />
          </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -97,11 +97,23 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TableView>
-      <Button fx:id="nuevaEntradaButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onNuevaEntradaAction" styleClass="buttons" stylesheets="@../css/Clasico.css" text="Nueva Entrada" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+      <Button fx:id="nuevaEntradaButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onNuevaEntradaAction" styleClass="buttons" stylesheets="@../css/Clasico.css" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin></Button>
-      <Button fx:id="volverButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVolverAction" styleClass="buttons" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+         </GridPane.margin>
+         <graphic>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label styleClass="box" text="Nueva" />
+                  <ImageView pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/transport_truck_delivery_icon_148906%20(1).png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </graphic></Button>
+      <Button fx:id="volverButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVolverAction" styleClass="buttons" GridPane.columnIndex="5" GridPane.halignment="RIGHT">
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
@@ -113,5 +125,9 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Button>
+      <Label alignment="CENTER" styleClass="labels" text="Cantidad: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+      <Label alignment="CENTER" styleClass="labels" text="Articulo: " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+      <Label alignment="CENTER" styleClass="labels" text="Proveedor: " GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" />
+      <Label alignment="CENTER" styleClass="labels" text="Caducidad:" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
    </children>
 </GridPane>
