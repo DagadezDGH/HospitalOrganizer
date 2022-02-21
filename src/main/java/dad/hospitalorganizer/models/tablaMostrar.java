@@ -5,13 +5,13 @@ public class tablaMostrar {
 		int codArticulo;
 		int cantidad;
 		String nomArticulo;
-		String nombreProveedor;
+		String lugar;
 
-		public tablaMostrar(int codArticulo, int cantidad,String nomArticulo,String nombreProveedor) {
+		public tablaMostrar(int codArticulo, int cantidad,String nomArticulo,String lugar) {
 			this.codArticulo = codArticulo;
 			this.cantidad = cantidad;
 			this.nomArticulo=nomArticulo;
-			this.nombreProveedor=nombreProveedor;
+			this.lugar=lugar;
 		}
 
 		public int getCodSalidaArticulo() {
@@ -46,12 +46,12 @@ public class tablaMostrar {
 			this.nomArticulo = nomArticulo;
 		}
 
-		public String getNombreProveedor() {
-			return nombreProveedor;
+		public String getLugar() {
+			return lugar;
 		}
 
-		public void setNombreProveedor(String nombreProveedor) {
-			this.nombreProveedor = nombreProveedor;
+		public void setLugar(String lugar) {
+			this.lugar = lugar;
 		}
 	}
 

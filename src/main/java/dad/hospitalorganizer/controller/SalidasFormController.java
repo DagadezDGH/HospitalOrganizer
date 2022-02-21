@@ -39,6 +39,8 @@ public class SalidasFormController implements Initializable {
 			FXCollections.observableArrayList());
 	private ListProperty<Proveedorcombo> proveedorProperty = new SimpleListProperty<Proveedorcombo>(
 			FXCollections.observableArrayList());
+
+	private ListProperty<String> lugarProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
 	private Conecciones Database;
 
 	@FXML
@@ -69,7 +71,7 @@ public class SalidasFormController implements Initializable {
 	private Button crearButton;
 
 	@FXML
-	private TextField lugarText;
+	private ComboBox<String> lugarCombo;
 
 	@FXML
 	private TextField motivoText;
@@ -88,6 +90,9 @@ public class SalidasFormController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Database = new Conecciones();
+		getLugarBox();
+
+		lugarCombo.itemsProperty().bind(lugarProperty);
 		articuloColumn.setCellValueFactory(v -> new SimpleStringProperty("" + v.getValue().getNomArticulo()));
 		cantidadColumn.setCellValueFactory(v -> new SimpleStringProperty("" + v.getValue().getCantidad()));
 		ProveedorColumn.setCellValueFactory(v -> new SimpleStringProperty("" + v.getValue().getNombreProveedor()));
@@ -139,13 +144,13 @@ public class SalidasFormController implements Initializable {
 	}
 
 	public void limpiar() {
-		lugarText.setText("");
 		motivoText.setText("");
 		salidaDatePicker.setValue(null);
 		cantidadText.setText("");
 		listSalidaArticulos.clear();
 		proveedorProperty.clear();
 		articuloProperty.clear();
+		lugarProperty.clear();
 	}
 
 	@FXML
@@ -168,7 +173,7 @@ public class SalidasFormController implements Initializable {
 		lista = Database.conexion.prepareStatement(
 				"INSERT INTO `salidas`( `lugarSalida`, `motivoSalida`, `paciente`, `personal`, `fechaSalida`, `comprobar`)"
 						+ " VALUES ((?),(?),(?),(?),(?),(?))");
-		lista.setString(1, lugarText.getText());
+		lista.setString(1, lugarCombo.getSelectionModel().getSelectedItem());
 		lista.setString(2, motivoText.getText());
 		lista.setString(3, App.usuario.getDni());// pacienteCombo.getSelectionModel().getSelectedItem().toString());
 		lista.setString(4, App.usuario.getDni());
@@ -178,7 +183,7 @@ public class SalidasFormController implements Initializable {
 		lista = Database.conexion.prepareStatement(
 				"select codSalida from salidas where lugarSalida=(?) and motivoSalida=(?) and personal =(?) and fechaSalida=(?) and comprobar=1");
 		ResultSet resultado;
-		lista.setString(1, lugarText.getText());
+		lista.setString(1, lugarCombo.getSelectionModel().getSelectedItem());
 		lista.setString(2, motivoText.getText());
 		lista.setString(3, App.usuario.getDni());
 		lista.setString(4, salidaDatePicker.getValue() + "");
@@ -232,6 +237,19 @@ public class SalidasFormController implements Initializable {
 
 		while (resultado.next()) {
 			articuloProperty.add(new Articulocombo(resultado.getInt("codArticulo"), resultado.getString("nombre")));
+		}
+	}
+	public void getLugarBox() {
+		try {
+		Database=new Conecciones();	
+		PreparedStatement lista = Database.conexion.prepareStatement("select lugar from lugares");
+		ResultSet resultado;
+		resultado = lista.executeQuery();
+			while (resultado.next()) {	
+				lugarProperty.add(resultado.getString("lugar"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }

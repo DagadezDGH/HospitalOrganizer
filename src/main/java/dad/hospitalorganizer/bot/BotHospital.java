@@ -16,7 +16,7 @@ public class BotHospital {
 			if (u.message().text().equals("Comando1")) {
 				
 				bot.execute(new SendMessage(u.message().chat().id(), "Resultado Query1"));
-				//bot.execute(new SendDocument(chatId, document))
+				//bot.execute(new SendDocument(u.message().chat().id(), new File("url"));
 			}
 		});
 		return UpdatesListener.CONFIRMED_UPDATES_ALL;

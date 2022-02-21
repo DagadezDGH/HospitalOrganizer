@@ -76,6 +76,7 @@ public class EntradaVerController implements Initializable {
 		proveedorCombo.valueProperty().addListener((o,ov,nv) -> onProveedorChange(o,ov,nv));
 		fechaEntradaCombo.valueProperty().addListener((o,ov,nv) -> onFechaChange(o,ov,nv));
 	}
+	
 	private void onFechaChange(ObservableValue<? extends String> o, String ov, String nv) {
 		if (ov!=null) {
 		}
@@ -87,6 +88,7 @@ public class EntradaVerController implements Initializable {
 			}
 		}
 	}
+	
 	private void onProveedorChange(ObservableValue<? extends String> o, String ov, String nv) {
 		if (ov!=null) {
 			fechaEntradaProperty.unbind();
@@ -151,7 +153,11 @@ public class EntradaVerController implements Initializable {
 	public void actualizar() throws SQLException {
 		listEntradaArticulo.clear();
 		try {	
-			PreparedStatement lista = Database.conexion.prepareStatement("SELECT entradaarticulo.codEntrada, articulos.nombre, entradaarticulo.cantidad, caducidad FROM entradaarticulo INNER JOIN Articulos ON entradaarticulo.codArticulo=articulos.codArticulo INNER JOIN Entradas ON Entradas.codEntrada=entradaarticulo.codEntrada INNER JOIN proveedores ON Proveedores.codproveedor=Entradas.codproveedor where proveedores.nombre=? AND entradas.fechaEntrada=?");
+			PreparedStatement lista = Database.conexion.prepareStatement(""
+					+ "SELECT entradaarticulo.codEntrada, articulos.nombre, entradaarticulo.cantidad, caducidad FROM entradaarticulo"
+					+ " INNER JOIN Articulos ON entradaarticulo.codArticulo=articulos.codArticulo "
+					+ "INNER JOIN Entradas ON Entradas.codEntrada=entradaarticulo.codEntrada "
+					+ "INNER JOIN proveedores ON Proveedores.codproveedor=Entradas.codproveedor where proveedores.nombre=? AND entradas.fechaEntrada=?");
 			lista.setString(1, proveedorCombo.getSelectionModel().getSelectedItem());	
 			lista.setString(2, fechaEntradaCombo.getSelectionModel().getSelectedItem());	
 			ResultSet resultado;
