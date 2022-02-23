@@ -31,7 +31,7 @@ import javafx.scene.layout.GridPane;
 import net.sf.jasperreports.engine.JRException;
 
 public class EntradaVerController implements Initializable {
-	private Conecciones Database=new Conecciones();
+	private Conecciones Database;
 	private ListProperty<String> proveedorProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
 	private ListProperty<String> fechaEntradaProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
 	private ListProperty<EntradaArticulo> listEntradaArticulo=new SimpleListProperty<EntradaArticulo>(FXCollections.observableArrayList()); 
@@ -171,7 +171,7 @@ public class EntradaVerController implements Initializable {
     @FXML
     void OnInformeAction(ActionEvent event) throws JRException, IOException {
     	
-    	GenerarPDF.generarPdf(getListEntradaArticulo());
+    	GenerarPDF.generarPdfEntrada(getListEntradaArticulo());
     	
     }
     @FXML
