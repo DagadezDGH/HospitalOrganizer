@@ -151,7 +151,7 @@ public class EntradaVerController implements Initializable {
 		listEntradaArticulo.clear();
 		try {	
 			PreparedStatement lista = Database.conexion.prepareStatement(""
-					+ "SELECT entradaarticulo.codEntrada, articulos.nombre, entradaarticulo.cantidad, caducidad FROM entradaarticulo"
+					+ "SELECT entradaarticulo.codEntrada, articulos.nombre, entradaarticulo.cantidad, articulos.codArticulo, caducidad FROM entradaarticulo"
 					+ " INNER JOIN Articulos ON entradaarticulo.codArticulo=articulos.codArticulo "
 					+ "INNER JOIN Entradas ON Entradas.codEntrada=entradaarticulo.codEntrada "
 					+ "INNER JOIN proveedores ON Proveedores.codproveedor=Entradas.codproveedor where proveedores.nombre=? AND entradas.fechaEntrada=?");
@@ -160,7 +160,7 @@ public class EntradaVerController implements Initializable {
 			ResultSet resultado;
 			resultado = lista.executeQuery();
 			while (resultado.next()) {
-				listEntradaArticulo.add(new EntradaArticulo(resultado.getString("articulos.nombre"),resultado.getInt("entradaarticulo.cantidad"),resultado.getDate("caducidad")));
+				listEntradaArticulo.add(new EntradaArticulo(resultado.getInt("articulos.codArticulo"), resultado.getString("articulos.nombre"),resultado.getInt("entradaarticulo.cantidad"),resultado.getDate("caducidad")));
 			}
 		} catch (Exception e) {
 		 		e.getStackTrace();

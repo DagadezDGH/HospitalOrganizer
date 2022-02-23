@@ -6,14 +6,19 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import dad.hospitalorganizer.connections.Conecciones;
 import dad.hospitalorganizer.dialogs.MostrarSalidaArticuloDialog;
 import dad.hospitalorganizer.dialogs.modificarArticuloDialog;
+import dad.hospitalorganizer.informes.GenerarPDF;
 import dad.hospitalorganizer.main.App;
+import dad.hospitalorganizer.models.EntradaArticulo;
 import dad.hospitalorganizer.models.Lugar;
 import dad.hospitalorganizer.models.Salida;
+import dad.hospitalorganizer.models.SalidaArticulo;
+import dad.hospitalorganizer.models.tablaMostrar;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -29,6 +34,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
+import net.sf.jasperreports.engine.JRException;
 
 public class SalidaVerController implements Initializable {
 
@@ -36,6 +42,7 @@ public class SalidaVerController implements Initializable {
 	private ListProperty<String> fechaSalidaProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
 	private ObservableList<Salida> listSalida = FXCollections.observableArrayList();
 	private ListProperty<Salida> listSalidas = new SimpleListProperty<Salida>(listSalida);
+	private ListProperty<tablaMostrar> listSalidaArticulos=new SimpleListProperty<tablaMostrar>(FXCollections.observableArrayList()); 
 	private Conecciones Database;
 	@FXML
 	private GridPane view;
@@ -162,8 +169,28 @@ public class SalidaVerController implements Initializable {
 	}
 	
 	@FXML
-    void onInformeAction(ActionEvent event) {
-
+    void onInformeAction(ActionEvent event) throws JRException, IOException {
+		try {
+			PreparedStatement lista = Database.conexion.prepareStatement(""
+					+ "SELECT S.cantidadSalida,S.codArticulo,A.nombre,A.ubicacion FROM salidaarticulo as S "
+					+ "INNER JOIN articulos as A ON S.codArticulo=A.codArticulo "
+					+ "where S.codSalida=?");
+			lista.setInt(1, tablaSalidaArticulo.getSelectionModel().getSelectedItem().getCodSalida());
+			 
+			 ResultSet resultado = lista.executeQuery();
+			while (resultado.next()) { 
+				
+				listSalidaArticulos.add(
+						new tablaMostrar(
+						resultado.getInt("codArticulo"), resultado.getInt("cantidadSalida"),
+						resultado.getString("nombre"), resultado.getString("ubicacion")));
+			}
+			System.out.println(listSalidaArticulos);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		
+		GenerarPDF.generarPdfSalida(getListSalidaArticulo());
     }
 
 	@FXML
@@ -243,5 +270,7 @@ public class SalidaVerController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
+	public List<tablaMostrar> getListSalidaArticulo() {
+		return listSalidaArticulos.get();
+	}
 }

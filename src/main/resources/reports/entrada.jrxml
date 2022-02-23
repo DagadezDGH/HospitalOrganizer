@@ -32,34 +32,6 @@
 				</textElement>
 				<text><![CDATA[Entrada]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="1" y="80" width="79" height="30" uuid="8092fc31-91ff-4dec-8b96-92a6980d9f40"/>
-				<textElement>
-					<font size="20"/>
-				</textElement>
-				<text><![CDATA[ID:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="80" y="80" width="138" height="30" uuid="cbd05176-0408-4650-9748-0d9037946e85"/>
-				<textElement>
-					<font size="20"/>
-				</textElement>
-				<text><![CDATA[Nombre:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="218" y="80" width="130" height="30" uuid="21adb0bc-7c35-4b2e-af5b-b1abb8e95dae"/>
-				<textElement>
-					<font size="20"/>
-				</textElement>
-				<text><![CDATA[Cantidad:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="350" y="80" width="131" height="30" uuid="b4d4cf9c-a6b8-420a-b717-68e908e67fad"/>
-				<textElement>
-					<font size="20"/>
-				</textElement>
-				<text><![CDATA[Caducidad:]]></text>
-			</staticText>
 		</band>
 	</title>
 	<columnHeader>
@@ -67,6 +39,34 @@
 			<line>
 				<reportElement x="0" y="26" width="491" height="1" uuid="3647814d-8ae2-4af7-9e1f-74871b5c7357"/>
 			</line>
+			<staticText>
+				<reportElement x="1" y="0" width="79" height="20" uuid="8092fc31-91ff-4dec-8b96-92a6980d9f40"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="138" height="20" uuid="cbd05176-0408-4650-9748-0d9037946e85"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="0" width="130" height="20" uuid="21adb0bc-7c35-4b2e-af5b-b1abb8e95dae"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Cantidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="131" height="20" uuid="b4d4cf9c-a6b8-420a-b717-68e908e67fad"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Caducidad:]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>

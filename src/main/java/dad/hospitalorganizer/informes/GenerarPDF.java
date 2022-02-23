@@ -12,6 +12,7 @@ import dad.hospitalorganizer.controller.SalidaVerController;
 import dad.hospitalorganizer.models.Entrada;
 import dad.hospitalorganizer.models.EntradaArticulo;
 import dad.hospitalorganizer.models.SalidaArticulo;
+import dad.hospitalorganizer.models.tablaMostrar;
 import javafx.beans.property.ListProperty;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -42,7 +43,7 @@ public class GenerarPDF {
 		Desktop.getDesktop().open(new File("Entrada.pdf"));
 	}
 	
-	public static void generarPdfSalida(List<SalidaArticulo> lista) throws JRException, IOException {
+	public static void generarPdfSalida(List<tablaMostrar> lista) throws JRException, IOException {
 		// compila el informe
 		JasperReport report = JasperCompileManager.compileReport(GenerarPDF.class.getResourceAsStream("/reports/salida.jrxml"));
 

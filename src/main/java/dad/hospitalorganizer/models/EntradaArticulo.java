@@ -17,7 +17,8 @@ public class EntradaArticulo {
 			this.caducidad=caducidad;
 			this.cantidad=cantidad;
 		}
-	 public EntradaArticulo(String nombreArticulo, int cantidad, Date caducidad) {
+	 public EntradaArticulo(int codArticulo, String nombreArticulo, int cantidad, Date caducidad) {
+		    this.codArticulo = codArticulo;
 		    this.nombreArticulo=nombreArticulo;
 			this.caducidad=caducidad;
 			this.cantidad=cantidad;

@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.image.Image;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
@@ -70,7 +71,6 @@ public class crearArticuloDialog extends Dialog<Articulo> {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/crearArticuloDialogView.fxml"));
 		fxmlLoader.setController(this);
 		getDialogPane().setContent(fxmlLoader.load());
-
 		try {
 			PreparedStatement lista = conections.conexion.prepareStatement("select * from Proveedores");
 			ResultSet resultado;
