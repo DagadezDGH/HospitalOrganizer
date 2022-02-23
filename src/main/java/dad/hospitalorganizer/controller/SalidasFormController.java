@@ -189,7 +189,9 @@ public class SalidasFormController implements Initializable {
 		lista.setString(4, salidaDatePicker.getValue() + "");
 		resultado = lista.executeQuery();
 		while (resultado.next()) {
+			
 			codSalida = resultado.getInt("codSalida");
+			System.out.println(codSalida);
 		}
 		for (int i = 0; i < listSalidaArticulos.size(); i++) {
 			lista = Database.conexion.prepareStatement(

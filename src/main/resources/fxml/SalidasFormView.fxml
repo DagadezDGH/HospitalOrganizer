@@ -37,11 +37,11 @@
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></Label>
-      <Label text="Motivo: " GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+      <Label text="Motivo: " GridPane.columnIndex="2" GridPane.halignment="RIGHT">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></Label>
-      <TextField fx:id="motivoText" styleClass="blue" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField fx:id="motivoText" styleClass="blue" GridPane.columnIndex="3">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
@@ -54,14 +54,6 @@
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></TextField>
-      <Label text="Paciente: " GridPane.columnIndex="2" GridPane.halignment="RIGHT">
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin></Label>
-      <ComboBox fx:id="pacienteCombo" minWidth="100.0" prefHeight="25.0" prefWidth="115.0" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnIndex="3" GridPane.columnSpan="2">
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin></ComboBox>
       <Label text="Articulo: " GridPane.halignment="RIGHT" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -71,7 +63,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </ComboBox>
-      <TableView fx:id="tableArticulos" styleClass="buttons" stylesheets="@../css/Clasico.css" GridPane.columnSpan="5" GridPane.rowIndex="5">
+      <TableView fx:id="tableArticulos" styleClass="table" stylesheets="@../css/Clasico.css" GridPane.columnSpan="5" GridPane.rowIndex="5">
          <columns>
             <TableColumn fx:id="articuloColumn" prefWidth="120.0" text="Articulo" />
             <TableColumn fx:id="cantidadColumn" prefWidth="120.0" text="Cantidad" />
@@ -109,22 +101,22 @@
             <Insets />
          </GridPane.margin>
       </Button>
-      <Label text="Proveedor:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <Label text="Proveedor:" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Label>
-      <ComboBox fx:id="proveedorCombo" layoutX="73.0" layoutY="100.0" prefHeight="25.0" prefWidth="115.0" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnIndex="3" GridPane.rowIndex="2">
+      <ComboBox fx:id="proveedorCombo" layoutX="73.0" layoutY="100.0" prefHeight="25.0" prefWidth="115.0" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin>
       </ComboBox>
-      <DatePicker fx:id="salidaDatePicker" maxHeight="25.0" maxWidth="115.0" prefHeight="25.0" prefWidth="115.0" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnIndex="3" GridPane.rowIndex="1">
+      <DatePicker fx:id="salidaDatePicker" maxHeight="25.0" maxWidth="115.0" prefHeight="25.0" prefWidth="115.0" styleClass="blue" stylesheets="@../css/Clasico.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </DatePicker>
-      <Label layoutX="232.0" layoutY="102.0" text="Fecha:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Label layoutX="232.0" layoutY="102.0" text="Fecha:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
