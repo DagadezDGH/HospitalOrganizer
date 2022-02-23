@@ -11,7 +11,7 @@ public class Salida {
 	 Date fechaSalida;
 	 int comprobar;
 	 
-	 public Salida(int codSalida,  String lugar, String motivo, String codPaciente,  String codPersonal, Date fechaSalida, int comprobar) {
+	 public Salida(int codSalida, String lugar, String motivo, String codPaciente,  String codPersonal, Date fechaSalida, int comprobar) {
 			this.codSalida=codSalida;
 			this.lugar=lugar;
 			this.motivo =motivo;

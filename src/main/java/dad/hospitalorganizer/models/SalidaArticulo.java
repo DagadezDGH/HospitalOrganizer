@@ -3,7 +3,6 @@ package dad.hospitalorganizer.models;
 public class SalidaArticulo {
 	int codSalidaArticulo;
 	int codSalida;
-	
 	int codArticulo;
 	int cantidad;
 	String nomArticulo;

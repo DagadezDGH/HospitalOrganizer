@@ -77,6 +77,9 @@ public class InventarioController implements Initializable {
 
 	@FXML
 	private Button volverButton;
+    
+	@FXML
+    private Button recargarButton;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -178,6 +181,16 @@ public class InventarioController implements Initializable {
 			error.showAndWait();
 		}
 	}
+
+    @FXML
+    void onClickRecargar(ActionEvent event) {
+    	try {
+			actualizar();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
 	@FXML
 	void onVolverAction(ActionEvent event) {

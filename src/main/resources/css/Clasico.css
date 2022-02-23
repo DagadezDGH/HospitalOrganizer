@@ -26,7 +26,7 @@
 	-fx-border-radius:5em;
 }
 .buttons:focused{
-	-fx-border-color:yellow;
+	-fx-border-color:orange;
 }
 .buttons:hover{
 	-fx-cursor:hand;

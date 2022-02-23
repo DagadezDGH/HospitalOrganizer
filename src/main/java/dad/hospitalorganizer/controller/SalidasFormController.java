@@ -1,15 +1,16 @@
 package dad.hospitalorganizer.controller;
 
 import java.io.IOException;
+
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import dad.hospitalorganizer.connections.Conecciones;
 import dad.hospitalorganizer.main.App;
 import dad.hospitalorganizer.models.Articulocombo;
+import dad.hospitalorganizer.models.Lugar;
 import dad.hospitalorganizer.models.Paciente;
 import dad.hospitalorganizer.models.Proveedorcombo;
 import dad.hospitalorganizer.models.SalidaArticulo;
@@ -19,7 +20,6 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,15 +32,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class SalidasFormController implements Initializable {
-	private ObservableList<SalidaArticulo> listSalidaArticulo = FXCollections.observableArrayList();
-	private ListProperty<SalidaArticulo> listSalidaArticulos = new SimpleListProperty<SalidaArticulo>(
-			listSalidaArticulo);
-	private ListProperty<Articulocombo> articuloProperty = new SimpleListProperty<Articulocombo>(
-			FXCollections.observableArrayList());
-	private ListProperty<Proveedorcombo> proveedorProperty = new SimpleListProperty<Proveedorcombo>(
-			FXCollections.observableArrayList());
-
-	private ListProperty<String> lugarProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
+	private ListProperty<SalidaArticulo> listSalidaArticulos = new SimpleListProperty<SalidaArticulo>(FXCollections.observableArrayList());
+	private ListProperty<Articulocombo> articuloProperty = new SimpleListProperty<Articulocombo>(FXCollections.observableArrayList());
+	private ListProperty<Proveedorcombo> proveedorProperty = new SimpleListProperty<Proveedorcombo>(FXCollections.observableArrayList());
+	private ListProperty<Lugar> lugarProperty = new SimpleListProperty<Lugar>(FXCollections.observableArrayList());
 	private Conecciones Database;
 
 	@FXML
@@ -71,7 +66,7 @@ public class SalidasFormController implements Initializable {
 	private Button crearButton;
 
 	@FXML
-	private ComboBox<String> lugarCombo;
+	private ComboBox<Lugar> lugarCombo;
 
 	@FXML
 	private TextField motivoText;
@@ -90,9 +85,7 @@ public class SalidasFormController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Database = new Conecciones();
-		getLugarBox();
 
-		lugarCombo.itemsProperty().bind(lugarProperty);
 		articuloColumn.setCellValueFactory(v -> new SimpleStringProperty("" + v.getValue().getNomArticulo()));
 		cantidadColumn.setCellValueFactory(v -> new SimpleStringProperty("" + v.getValue().getCantidad()));
 		ProveedorColumn.setCellValueFactory(v -> new SimpleStringProperty("" + v.getValue().getNombreProveedor()));
@@ -100,12 +93,12 @@ public class SalidasFormController implements Initializable {
 		proveedorCombo.valueProperty().addListener((o, ov, nv) -> onProveedorChange(o, ov, nv));
 		proveedorCombo.itemsProperty().bind(proveedorProperty);
 		articulosCombo.itemsProperty().bind(articuloProperty);
-		
+		lugarCombo.itemsProperty().bind(lugarProperty);
 
 		try {
+			getLugarBox();
 			getProveedor();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -120,22 +113,16 @@ public class SalidasFormController implements Initializable {
 	private void onProveedorChange(ObservableValue<? extends Proveedorcombo> o, Proveedorcombo ov, Proveedorcombo nv) {
 		if (ov != null) {
 			articuloProperty.unbind();
-			System.out.println("Valor viejo" + articuloProperty.getValue());
 		}
 		if (nv != null) {
 			cantidadText.clear();
 			articuloProperty.clear();
-			// caducidadDatePicker;
 			try {
 				getArticulos();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			articulosCombo.itemsProperty().bind(articuloProperty);
-			System.out.println("Valor nuevo " + articuloProperty.getValue());
-
-			System.out.println("Valor nuevo " + nv);
 		}
 	}
 
@@ -143,53 +130,39 @@ public class SalidasFormController implements Initializable {
 		return view;
 	}
 
-	public void limpiar() {
-		motivoText.setText("");
-		salidaDatePicker.setValue(null);
-		cantidadText.setText("");
-		listSalidaArticulos.clear();
-		proveedorProperty.clear();
-		articuloProperty.clear();
-		lugarProperty.clear();
-	}
-
 	@FXML
 	void onClickAñadir(ActionEvent event) {
 
-		listSalidaArticulos
-				.add(new SalidaArticulo(articulosCombo.getSelectionModel().getSelectedItem().getCodArticulo(),
+		listSalidaArticulos.add(new SalidaArticulo(articulosCombo.getSelectionModel().getSelectedItem().getCodArticulo(),
 						Integer.parseInt(cantidadText.getText()),
 						articulosCombo.getSelectionModel().getSelectedItem().getNombre(),
 						proveedorCombo.getSelectionModel().getSelectedItem().getNombre()));
 
-		System.out.println(listSalidaArticulos);
-
-		// listSalidaArticulos.add();
 	}
 
 	@FXML
 	void onClickCrear(ActionEvent event) throws SQLException {
 		PreparedStatement lista;
 		lista = Database.conexion.prepareStatement(
-				"INSERT INTO `salidas`( `lugarSalida`, `motivoSalida`, `paciente`, `personal`, `fechaSalida`, `comprobar`)"
+				"INSERT INTO `salidas`( `lugar`, `motivoSalida`, `paciente`, `personal`, `fechaSalida`, `comprobar`)"
 						+ " VALUES ((?),(?),(?),(?),(?),(?))");
-		lista.setString(1, lugarCombo.getSelectionModel().getSelectedItem());
+		lista.setInt(1, lugarCombo.getSelectionModel().getSelectedItem().getCodLugar());
 		lista.setString(2, motivoText.getText());
-		lista.setString(3, App.usuario.getDni());// pacienteCombo.getSelectionModel().getSelectedItem().toString());
+		lista.setString(3, App.usuario.getDni());
 		lista.setString(4, App.usuario.getDni());
 		lista.setString(5, salidaDatePicker.getValue() + "");
 		lista.setInt(6, 1);
 		lista.executeUpdate();
 		lista = Database.conexion.prepareStatement(
-				"select codSalida from salidas where lugarSalida=(?) and motivoSalida=(?) and personal =(?) and fechaSalida=(?) and comprobar=1");
+				"select codSalida from salidas where lugar=(?) and motivoSalida=(?) and personal =(?) and fechaSalida=(?) and comprobar=1");
 		ResultSet resultado;
-		lista.setString(1, lugarCombo.getSelectionModel().getSelectedItem());
+		lista.setInt(1, lugarCombo.getSelectionModel().getSelectedItem().getCodLugar());
 		lista.setString(2, motivoText.getText());
 		lista.setString(3, App.usuario.getDni());
 		lista.setString(4, salidaDatePicker.getValue() + "");
 		resultado = lista.executeQuery();
 		while (resultado.next()) {
-			
+
 			codSalida = resultado.getInt("codSalida");
 			System.out.println(codSalida);
 		}
@@ -199,9 +172,26 @@ public class SalidasFormController implements Initializable {
 
 			lista.setInt(1, listSalidaArticulos.get(i).getCodArticulo());
 			lista.setInt(2, codSalida);
-			lista.setInt(3, listSalidaArticulos.get(i).getCantidad());// caducidadDatePicker.getValue()+"");
+			lista.setInt(3, listSalidaArticulos.get(i).getCantidad());
 			lista.executeUpdate();
+
+			// actualiza la cantidad en la tabla de inventario
+			int cantid = 0;
+			PreparedStatement list = Database.conexion.prepareStatement("select * from Articulos where codArticulo=?");
+			list.setInt(1, listSalidaArticulos.get(i).getCodArticulo());
+
+			ResultSet result = list.executeQuery();
+			while (result.next()) {
+				cantid = result.getInt("cantidad");
+			}
+
+			PreparedStatement updatecantida = Database.conexion
+					.prepareStatement("UPDATE articulos SET cantidad=? where codArticulo=?");
+			updatecantida.setInt(1, cantid - listSalidaArticulos.get(i).getCantidad());
+			updatecantida.setInt(2, listSalidaArticulos.get(i).getCodArticulo());
+			updatecantida.executeUpdate();
 		}
+		limpiar();
 	}
 
 	@FXML
@@ -209,8 +199,8 @@ public class SalidasFormController implements Initializable {
 		limpiar();
 		try {
 			getProveedor();
+			getLugarBox();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		App.goToMain();
@@ -218,7 +208,6 @@ public class SalidasFormController implements Initializable {
 
 	public void getProveedor() throws SQLException {
 		proveedorProperty.clear();
-
 		PreparedStatement lista = Database.conexion.prepareStatement("select codProveedor,nombre from proveedores");
 		ResultSet resultado;
 		resultado = lista.executeQuery();
@@ -241,17 +230,30 @@ public class SalidasFormController implements Initializable {
 			articuloProperty.add(new Articulocombo(resultado.getInt("codArticulo"), resultado.getString("nombre")));
 		}
 	}
+
 	public void getLugarBox() {
+		lugarProperty.clear();
 		try {
-		Database=new Conecciones();	
-		PreparedStatement lista = Database.conexion.prepareStatement("select lugar from lugares");
-		ResultSet resultado;
-		resultado = lista.executeQuery();
-			while (resultado.next()) {	
-				lugarProperty.add(resultado.getString("lugar"));
+			Database = new Conecciones();
+			PreparedStatement lista = Database.conexion.prepareStatement("select * from lugares");
+			ResultSet resultado;
+			resultado = lista.executeQuery();
+			while (resultado.next()) {
+				lugarProperty.add(new Lugar(resultado.getInt("codLugar"), resultado.getString("lugar")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
+	public void limpiar() {
+		motivoText.setText("");
+		salidaDatePicker.setValue(null);
+		cantidadText.setText("");
+		listSalidaArticulos.clear();
+		proveedorProperty.clear();
+		articuloProperty.clear();
+		lugarProperty.clear();
+	}
+
 }

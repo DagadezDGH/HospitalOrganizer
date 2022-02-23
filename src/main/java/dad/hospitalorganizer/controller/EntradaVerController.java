@@ -35,7 +35,6 @@ public class EntradaVerController implements Initializable {
 	private ListProperty<String> proveedorProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
 	private ListProperty<String> fechaEntradaProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
 	private ListProperty<EntradaArticulo> listEntradaArticulo=new SimpleListProperty<EntradaArticulo>(FXCollections.observableArrayList()); 
-	private List<EntradaArticulo> lista = new ArrayList<>();
 	@FXML
     private GridPane view;
 
@@ -92,13 +91,11 @@ public class EntradaVerController implements Initializable {
 	private void onProveedorChange(ObservableValue<? extends String> o, String ov, String nv) {
 		if (ov!=null) {
 			fechaEntradaProperty.unbind();
-			System.out.println("Valor viejo"+fechaEntradaProperty.getValue());
 		}
 		if (nv!=null) {
 			fechaEntradaProperty.clear();
 			getFechaEntradaBox();
 			fechaEntradaCombo.itemsProperty().bind(fechaEntradaProperty);
-			System.out.println("Valor nuevo "+fechaEntradaProperty.getValue());
 			try {
 				actualizar();
 			} catch (SQLException e) {

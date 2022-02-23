@@ -12,6 +12,7 @@ import dad.hospitalorganizer.connections.Conecciones;
 import dad.hospitalorganizer.dialogs.MostrarSalidaArticuloDialog;
 import dad.hospitalorganizer.dialogs.modificarArticuloDialog;
 import dad.hospitalorganizer.main.App;
+import dad.hospitalorganizer.models.Lugar;
 import dad.hospitalorganizer.models.Salida;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -31,7 +32,7 @@ import javafx.scene.layout.GridPane;
 
 public class SalidaVerController implements Initializable {
 
-	private ListProperty<String> lugarProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
+	private ListProperty<Lugar> lugarProperty=new SimpleListProperty<Lugar>(FXCollections.observableArrayList());
 	private ListProperty<String> fechaSalidaProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
 	private ObservableList<Salida> listSalida = FXCollections.observableArrayList();
 	private ListProperty<Salida> listSalidas = new SimpleListProperty<Salida>(listSalida);
@@ -58,7 +59,7 @@ public class SalidaVerController implements Initializable {
 	private ComboBox<String> fechaSalidaCombo;
 	
 	@FXML 
-	private ComboBox<String> lugarCombo;
+	private ComboBox<Lugar> lugarCombo;
 	
 	@FXML
 	private Button volverButton;
@@ -69,7 +70,10 @@ public class SalidaVerController implements Initializable {
 
 	@FXML
 	private Button checkearbtn;
-
+    
+	@FXML
+    private Button informeButton;
+   
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -105,7 +109,7 @@ public class SalidaVerController implements Initializable {
 		}
 	}
 	
-	private void onLugarChange(ObservableValue<? extends String> o, String ov, String nv) {
+	private void onLugarChange(ObservableValue<? extends Lugar> o, Lugar ov, Lugar nv) {
 		if (ov!=null) {
 			fechaSalidaProperty.unbind();
 			System.out.println("Valor viejo"+fechaSalidaProperty.getValue());
@@ -152,11 +156,15 @@ public class SalidaVerController implements Initializable {
 			dialog = new MostrarSalidaArticuloDialog(submited);
 			dialog.showAndWait();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
+	
+	@FXML
+    void onInformeAction(ActionEvent event) {
+
+    }
 
 	@FXML
 	void onVolverAction(ActionEvent event) {
@@ -167,13 +175,13 @@ public class SalidaVerController implements Initializable {
 		listSalidas.clear();
 		
 		try {
-			PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM salidas where comprobar=1");
+			PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM salidas INNER JOIN Lugares ON Lugares.codLugar=salidas.lugar where comprobar=1");
 			 
 			 ResultSet resultado = lista.executeQuery();
 			while (resultado.next()) { 
 				
 				listSalidas.add(new Salida(
-						resultado.getInt("codSalida"), resultado.getString("lugarSalida"),
+						resultado.getInt("codSalida"), resultado.getString("Lugares.lugar"),
 						resultado.getString("motivoSalida"), resultado.getString("paciente"),
 						resultado.getString("personal"), resultado.getDate("fechaSalida")
 						,resultado.getInt("comprobar")));
@@ -187,16 +195,16 @@ public class SalidaVerController implements Initializable {
 		listSalidas.clear();
 		
 		try {
-			PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM salidas where lugarSalida=? and fechaSalida=?");
-			lista.setString(1, lugarCombo.getSelectionModel().getSelectedItem());	
+			PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM salidas INNER JOIN Lugares ON Lugares.codLugar=salidas.lugar where salidas.lugar=? and fechaSalida=? ");
+			lista.setInt(1, lugarCombo.getSelectionModel().getSelectedItem().getCodLugar());	
 			lista.setString(2, fechaSalidaCombo.getSelectionModel().getSelectedItem());
 			 ResultSet resultado = lista.executeQuery();
-			listSalidas.add(new Salida(1,"A","B","C","D",new Date(10),1));
+			
 			while (resultado.next()) { 
 				
 				listSalidas.add(new Salida(
 						resultado.getInt("codSalida"),
-						resultado.getString("lugarSalida"),
+						resultado.getString("Lugares.lugar"),
 						resultado.getString("motivoSalida"),
 						resultado.getString("paciente"),
 						resultado.getString("personal"),
@@ -211,8 +219,8 @@ public class SalidaVerController implements Initializable {
 	public void getFechaSalidaBox() {
 		try {
 		Database=new Conecciones();
-		PreparedStatement lista = Database.conexion.prepareStatement("select fechaSalida from salidas where lugarSalida=?");
-		lista.setString(1, lugarCombo.getSelectionModel().getSelectedItem());	
+		PreparedStatement lista = Database.conexion.prepareStatement("select fechaSalida from salidas where lugar=?");
+		lista.setInt(1, lugarCombo.getSelectionModel().getSelectedItem().getCodLugar());	
 		ResultSet resultado;
 		resultado = lista.executeQuery();
 			while (resultado.next()) {	
@@ -225,11 +233,11 @@ public class SalidaVerController implements Initializable {
 	public void getLugarBox() {
 		try {
 		Database=new Conecciones();	
-		PreparedStatement lista = Database.conexion.prepareStatement("select lugar from lugares");
+		PreparedStatement lista = Database.conexion.prepareStatement("select * from lugares");
 		ResultSet resultado;
 		resultado = lista.executeQuery();
 			while (resultado.next()) {	
-				lugarProperty.add(resultado.getString("lugar"));
+				lugarProperty.add(new Lugar(resultado.getInt("codLugar"), resultado.getString("lugar")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

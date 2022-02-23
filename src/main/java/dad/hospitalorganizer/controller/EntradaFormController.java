@@ -90,7 +90,7 @@ public class EntradaFormController implements Initializable {
 		tablaEntradaArticulo.itemsProperty().bind(listEntrada);
 		IdEntradaColumn.setCellValueFactory(v -> new SimpleStringProperty("" + v.getValue().getCodEntrada()));
 		proveedorColumn.setCellValueFactory(v -> new SimpleStringProperty(v.getValue().getProveedor()));
-		fechaColumn.setCellValueFactory(v -> new SimpleStringProperty(v.getValue().getFecha().toString()));//me da un dia menos
+		fechaColumn.setCellValueFactory(v -> new SimpleStringProperty(v.getValue().getFecha().toString()));
 		proveedorBox.valueProperty().addListener((o,ov,nv) -> onProveedorChange(o,ov,nv));
 		cantidadText.textProperty().bindBidirectional(cantidad,new NumberStringConverter());
 	}
@@ -102,7 +102,6 @@ public class EntradaFormController implements Initializable {
 		if (nv!=null) {
 			cantidadText.clear();
 			articuloProperty.clear();
-			//caducidadDatePicker;
 			getArticulos();
 			articulosBox.itemsProperty().bind(articuloProperty);
 			System.out.println("Valor nuevo "+articuloProperty.getValue());
@@ -135,15 +134,15 @@ public class EntradaFormController implements Initializable {
 
 		Optional<ButtonType> resultad = confirmation.showAndWait();
 		if (resultad.get() == ButtonType.OK) {
-	    	PreparedStatement list = Database.conexion.prepareStatement("select * from Articulos where nombre=?");
+	    	int cantid=0;
+			PreparedStatement list = Database.conexion.prepareStatement("select * from Articulos where nombre=?");
 			list.setString(1, articulosBox.getSelectionModel().getSelectedItem());
+			
 			ResultSet result = list.executeQuery();
 			while (result.next()) {
 			artic=result.getInt("codArticulo");
+			cantid=result.getInt("cantidad");
 			}
-	    	System.out.println(tablaEntradaArticulo.getSelectionModel().getSelectedItem().getCodEntrada());
-	    	System.out.println(cantidad.getValue());
-	    	System.out.println(caducidadDatePicker.getValue()+" "+artic);
 	    try {
 			PreparedStatement lista = Database.conexion.prepareStatement("INSERT INTO entradaarticulo(codArticulo, codEntrada, cantidad, caducidad)values ((?),(?),(?),(?))");
 			lista.setInt(1, artic);
@@ -151,7 +150,11 @@ public class EntradaFormController implements Initializable {
 			lista.setInt(3, cantidad.getValue());
 			lista.setString(4, caducidadDatePicker.getValue()+"");
 			lista.executeUpdate();
-			System.out.println("Insertado");
+			
+			PreparedStatement updatecantida = Database.conexion.prepareStatement("UPDATE articulos SET cantidad=? where codArticulo=?");
+			updatecantida.setInt(1, cantidad.getValue()+cantid);
+			updatecantida.setInt(2, artic);
+			updatecantida.executeUpdate();
 	    	} catch (Exception e) {
 	    		System.out.println("no insertado");
 	    	}
@@ -160,8 +163,6 @@ public class EntradaFormController implements Initializable {
 		confirm.setTitle("ERROR");
 		confirm.setHeaderText("Error en la entrada");
 		confirm.setContentText("Asegúrese de que la escribió correctamente.");}
-    	
- 
     }
     @FXML
     void onVolverAction(ActionEvent event) {
