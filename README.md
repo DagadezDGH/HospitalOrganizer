@@ -72,5 +72,5 @@ Podremos visualizar la salida deseada, que clicando en ella y en el botón mostr
 <p align="center"><img src="/GitHub_Images/salidaver.PNG" width=""/></p>
 
 ## Documentación
-
+* [Manual de Uso](ManualHospitalOrganizer.pdf)
 ## Agradecimientos
