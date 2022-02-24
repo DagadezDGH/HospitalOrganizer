@@ -87,7 +87,7 @@ insert into Usuarios values ('97534722Q', 'David Jones', '0','gestorocio');
 insert into Usuarios values ('74196357K', 'Lucia Gracias', '0','gestorcirugia');
 insert into Usuarios values ('22571976F', 'Jom Fly', '1','Foj33ly');
 insert into Usuarios values ('33557722F', 'Luna Martir', '1','2A53RTIM');
-
+insert into Usuarios values ('doctor', 'Doctor', '0','hospital');
 
 insert into Entradas VALUES (NULL, '00005','12346677G','2022-01-30', '1');
 insert into Entradas VALUES (NULL, '10000', '66511977G','2022-01-30','1');

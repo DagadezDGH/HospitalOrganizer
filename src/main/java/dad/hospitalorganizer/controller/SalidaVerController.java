@@ -246,7 +246,7 @@ public class SalidaVerController implements Initializable {
 	public void getFechaSalidaBox() {
 		try {
 		Database=new Conecciones();
-		PreparedStatement lista = Database.conexion.prepareStatement("select fechaSalida from salidas where lugar=?");
+		PreparedStatement lista = Database.conexion.prepareStatement("SELECT DISTINCT fechaSalida from salidas where lugar=?");
 		lista.setInt(1, lugarCombo.getSelectionModel().getSelectedItem().getCodLugar());	
 		ResultSet resultado;
 		resultado = lista.executeQuery();
