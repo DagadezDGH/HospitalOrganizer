@@ -19,8 +19,7 @@ Tras mucho divagar que proyecto deseabamos hacer nos decidimos en hacer un organ
 El programa está disponible para **Windows** en versión *instalable*.
 
 Descarga aquí:
-* [HospitalOrganizer v1.0.0]
-
+* [HospitalOrganizer v1.0.0](https://github.com/dam-dad/HsopitalOrganizer/releases)
 ## Pantallas
 
 ### Login
@@ -73,4 +72,3 @@ Podremos visualizar la salida deseada, que clicando en ella y en el botón mostr
 
 ## Documentación
 * [Manual de Uso](ManualHospitalOrganizer.pdf)
-## Agradecimientos
