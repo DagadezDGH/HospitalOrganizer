@@ -37,7 +37,7 @@ public class GenerarPDF {
 				new JRBeanCollectionDataSource(lista));
 
 		// exporta el informe a un fichero PDF
-		JasperExportManager.exportReportToPdfFile(jasperPrint, "Entrada.pdf");
+		JasperExportManager.exportReportToPdfFile(jasperPrint, "/Entrada.pdf");
 
 		// Abre el archivo PDF generado con el programa predeterminado del sistema
 		Desktop.getDesktop().open(new File("Entrada.pdf"));

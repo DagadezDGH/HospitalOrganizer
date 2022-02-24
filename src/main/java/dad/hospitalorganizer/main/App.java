@@ -1,6 +1,7 @@
 package dad.hospitalorganizer.main;
 
 
+import dad.hospitalorganizer.bot.BotHospital;
 import dad.hospitalorganizer.controller.EntradaController;
 
 
@@ -74,6 +75,7 @@ public class App extends Application {
 		primaryStage.setTitle("HospitalOrganizer");
 		primaryStage.getIcons().add(new Image("/images/icon-64x64.png"));
 		primaryStage.show();
+		BotHospital bot = new BotHospital();
 	}
 
 	public static void main(String[] args) {

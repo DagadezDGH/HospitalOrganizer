@@ -30,16 +30,21 @@ CREATE TABLE Entradas(
  FOREIGN KEY (codProveedor) REFERENCES Proveedores(codProveedor),
  FOREIGN KEY (dni) REFERENCES Usuarios(dni));
 
+CREATE TABLE Lugares(
+ codLugar integer AUTO_INCREMENT PRIMARY KEY,
+ lugar VARCHAR(20));
+ 
 CREATE TABLE Salidas(
  codSalida INTEGER AUTO_INCREMENT PRIMARY KEY,
- lugarSalida VARCHAR(20),
+ lugar INTEGER,
  motivoSalida VARCHAR(20),
  paciente VARCHAR(9),
  personal VARCHAR(9),
  fechaSalida DATE,
  comprobar TinyInt,
  FOREIGN KEY (paciente) REFERENCES Usuarios(dni),
- FOREIGN KEY (personal) REFERENCES Usuarios(dni));
+ FOREIGN KEY (personal) REFERENCES Usuarios(dni),
+ FOREIGN KEY (lugar) REFERENCES Lugares(codLugar));
  
 CREATE TABLE SalidaArticulo(
  codSalidaArticulo integer AUTO_INCREMENT PRIMARY KEY,
@@ -58,6 +63,17 @@ CREATE TABLE EntradaArticulo(
  FOREIGN KEY (codEntrada) REFERENCES Entradas(codEntrada),
  FOREIGN KEY (codArticulo) REFERENCES Articulos(codArticulo));
 
+insert into Lugares VALUES (NULL, 'Rayos X');
+insert into Lugares VALUES (NULL, 'Laboratorio');
+insert into Lugares VALUES (NULL, 'Quirofano');
+insert into Lugares VALUES (NULL, 'Pediatria');
+insert into Lugares VALUES (NULL, 'Urgencias');
+insert into Lugares VALUES (NULL, 'Sala de espera');
+insert into Lugares VALUES (NULL, 'Enfermeria');
+insert into Lugares VALUES (NULL, 'Almacen');
+insert into Lugares VALUES (NULL, 'Cafeteria');
+insert into Lugares VALUES (NULL, 'Habitaciones');
+insert into Lugares VALUES (NULL, 'Consulta');
 
 insert into Proveedores VALUES ('00005', 'Alimentacion', '922001122');
 insert into Proveedores VALUES ('00100', 'Cirugia','900006699');
@@ -125,10 +141,10 @@ insert into EntradaArticulo VALUES(NULL, 17,3, 20,'2022-06-28');
 insert into EntradaArticulo VALUES(NULL, 18,2, 10,'2022-12-28');
 insert into EntradaArticulo VALUES(NULL, 19,2, 10,'2022-12-28');
 
-insert into Salidas VALUES(NULL,'Cafeteria','No hay motivo',NULL,'12346677G','2022-01-30','0');
-insert into Salidas VALUES(NULL,'Habitaciones','Repuestos',NULL,'66511977G','2022-01-30','0');
-insert into Salidas VALUES(NULL,'Sala de espera','Faltan jugetes',NULL,'97534722Q','2022-01-30','0');
-insert into Salidas VALUES(NULL,'Sala de espera','Faltan jugetes',NULL,'97534722Q','2022-02-28','0');
+insert into Salidas VALUES(NULL,9,'No hay motivo',NULL,'12346677G','2022-01-30','0');
+insert into Salidas VALUES(NULL,10,'Repuestos',NULL,'66511977G','2022-01-30','0');
+insert into Salidas VALUES(NULL,6,'Faltan jugetes',NULL,'97534722Q','2022-01-30','0');
+insert into Salidas VALUES(NULL,6,'Faltan jugetes',NULL,'97534722Q','2022-02-28','0');
 
 insert into SalidaArticulo VALUES(NULL, 1,1, 20);
 insert into SalidaArticulo VALUES(NULL, 1,1, 20);
