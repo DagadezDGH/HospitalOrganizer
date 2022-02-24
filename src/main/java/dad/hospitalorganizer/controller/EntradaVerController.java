@@ -141,14 +141,14 @@ public class EntradaVerController implements Initializable {
 		try {
 		Database=new Conecciones();
 		String a="";
-		PreparedStatement list = Database.conexion.prepareStatement("select codproveedor from Proveedores where nombre=?");
+		PreparedStatement list = Database.conexion.prepareStatement("select codProveedor from Proveedores where nombre=?");
 		list.setString(1, proveedorCombo.getSelectionModel().getSelectedItem());	
 		ResultSet result;
 		result= list.executeQuery();
 			while (result.next()) {	
-				a=result.getString("codproveedor");
+				a=result.getString("codProveedor");
 			}
-		PreparedStatement lista = Database.conexion.prepareStatement("select fechaEntrada from Entradas where codproveedor=?");
+		PreparedStatement lista = Database.conexion.prepareStatement("select fechaEntrada from Entradas where codProveedor=?");
 		lista.setString(1, a);	
 		ResultSet resultado;
 		resultado = lista.executeQuery();
@@ -166,16 +166,17 @@ public class EntradaVerController implements Initializable {
 		listEntradaArticulo.clear();
 		try {	
 			PreparedStatement lista = Database.conexion.prepareStatement(""
-					+ "SELECT entradaarticulo.codEntrada, articulos.nombre, entradaarticulo.cantidad, articulos.codArticulo, caducidad FROM entradaarticulo"
-					+ "INNER JOIN Articulos ON entradaarticulo.codArticulo=articulos.codArticulo "
-					+ "INNER JOIN Entradas ON Entradas.codEntrada=entradaarticulo.codEntrada "
-					+ "INNER JOIN proveedores ON Proveedores.codproveedor=Entradas.codproveedor where proveedores.nombre=? AND entradas.fechaEntrada=?");
+					+ "SELECT EntradaArticulo.codEntrada, Articulos.nombre, EntradaArticulo.cantidad, Articulos.codArticulo, caducidad FROM EntradaArticulo"
+					+ " INNER JOIN Articulos ON EntradaArticulo.codArticulo=Articulos.codArticulo "
+					+ "INNER JOIN Entradas ON Entradas.codEntrada=EntradaArticulo.codEntrada "
+					+ "INNER JOIN Proveedores ON Proveedores.codproveedor=Entradas.codproveedor where Proveedores.nombre=? AND Entradas.fechaEntrada=?");
 			lista.setString(1, proveedorCombo.getSelectionModel().getSelectedItem());	
 			lista.setString(2, fechaEntradaCombo.getSelectionModel().getSelectedItem());	
 			ResultSet resultado;
 			resultado = lista.executeQuery();
 			while (resultado.next()) {
-				listEntradaArticulo.add(new EntradaArticulo(resultado.getInt("articulos.codArticulo"), resultado.getString("articulos.nombre"),resultado.getInt("entradaarticulo.cantidad"),resultado.getDate("caducidad")));
+				listEntradaArticulo.add(new EntradaArticulo(resultado.getInt("Articulos.codArticulo"), resultado.getString("Articulos.nombre"),
+						resultado.getInt("EntradaArticulo.cantidad"),resultado.getDate("caducidad")));
 			}
 		} catch (Exception e) {
 		 		e.getStackTrace();
@@ -187,16 +188,17 @@ public class EntradaVerController implements Initializable {
 		listEntradaArticulo.clear();
 		try {	
 			PreparedStatement lista = Database.conexion.prepareStatement(""
-					+ "SELECT entradaarticulo.codEntrada, articulos.nombre, entradaarticulo.cantidad, articulos.codArticulo, caducidad FROM entradaarticulo"
-					+ "INNER JOIN Articulos ON entradaarticulo.codArticulo=articulos.codArticulo "
-					+ "INNER JOIN Entradas ON Entradas.codEntrada=entradaarticulo.codEntrada "
-					+ "INNER JOIN proveedores ON Proveedores.codproveedor=Entradas.codproveedor where proveedores.nombre=? AND entradas.fechaEntrada=?");
+					+ "SELECT EntradaArticulo.codEntrada, Articulos.nombre, EntradaArticulo.cantidad, Articulos.codArticulo, caducidad FROM EntradaArticulo"
+					+ "INNER JOIN Articulos ON EntradaArticulo.codArticulo=Articulos.codArticulo "
+					+ "INNER JOIN Entradas ON Entradas.codEntrada=EntradaArticulo.codEntrada "
+					+ "INNER JOIN Proveedores ON Proveedores.codproveedor=Entradas.codproveedor where Proveedores.nombre=? AND Entradas.fechaEntrada=?");
 			lista.setString(1, proveedorCombo.getSelectionModel().getSelectedItem());	
 			lista.setString(2, fechaEntradaCombo.getSelectionModel().getSelectedItem());	
 			ResultSet resultado;
 			resultado = lista.executeQuery();
 			while (resultado.next()) {
-				listEntradaArticulo.add(new EntradaArticulo(resultado.getInt("articulos.codArticulo"), resultado.getString("articulos.nombre"),resultado.getInt("entradaarticulo.cantidad"),resultado.getDate("caducidad")));
+				listEntradaArticulo.add(new EntradaArticulo(resultado.getInt("Articulos.codArticulo"), 
+						resultado.getString("Articulos.nombre"),resultado.getInt("EntradaArticulo.cantidad"),resultado.getDate("caducidad")));
 			}
 		} catch (Exception e) {
 		 		e.getStackTrace();

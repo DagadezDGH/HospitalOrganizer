@@ -117,7 +117,7 @@ public class crearArticuloDialog extends Dialog<Articulo> {
 				}
 
 				PreparedStatement prep = conections.conexion.prepareStatement(
-						"insert into articulos ( nombre, ubicacion, cantidad, descripcion, proveedor) values ((?), (?), (?), (?), (?))");
+						"insert into Articulos ( nombre, ubicacion, cantidad, descripcion, proveedor) values ((?), (?), (?), (?), (?))");
 				prep.setString(1, nombretxt.getText());
 				prep.setString(2, ubicaciontxt.getText());
 				prep.setInt(3, Integer.parseInt(cantidadtxt.getText()));

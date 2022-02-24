@@ -154,14 +154,14 @@ public class EntradaFormController implements Initializable {
 			cantid=result.getInt("cantidad");
 			}
 	    try {
-			PreparedStatement lista = Database.conexion.prepareStatement("INSERT INTO entradaarticulo(codArticulo, codEntrada, cantidad, caducidad)values ((?),(?),(?),(?))");
+			PreparedStatement lista = Database.conexion.prepareStatement("INSERT INTO EntradaArticulo(codArticulo, codEntrada, cantidad, caducidad)values ((?),(?),(?),(?))");
 			lista.setInt(1, artic);
 			lista.setInt(2, tablaEntradaArticulo.getSelectionModel().getSelectedItem().getCodEntrada());
 			lista.setInt(3, cantidad.getValue());
 			lista.setString(4, caducidadDatePicker.getValue()+"");
 			lista.executeUpdate();
 			
-			PreparedStatement updatecantida = Database.conexion.prepareStatement("UPDATE articulos SET cantidad=? where codArticulo=?");
+			PreparedStatement updatecantida = Database.conexion.prepareStatement("UPDATE Articulos SET cantidad=? where codArticulo=?");
 			updatecantida.setInt(1, cantidad.getValue()+cantid);
 			updatecantida.setInt(2, artic);
 			updatecantida.executeUpdate();
@@ -201,7 +201,7 @@ public class EntradaFormController implements Initializable {
 	public void actualizar() throws SQLException {
 		listEntrada.clear();
 		try {	
-			PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM entradas INNER JOIN proveedores ON entradas.codProveedor=proveedores.codProveedor where proveedores.nombre=?");
+			PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM Entradas INNER JOIN Proveedores ON Entradas.codProveedor=Proveedores.codProveedor where Proveedores.nombre=?");
 			lista.setString(1, proveedorBox.getSelectionModel().getSelectedItem());	
 			ResultSet resultado;
 			resultado = lista.executeQuery();
@@ -233,7 +233,7 @@ public class EntradaFormController implements Initializable {
 	public void getArticulos() {
 		try {
 		Database=new Conecciones();	
-		PreparedStatement lista = Database.conexion.prepareStatement("select Articulos.nombre from Articulos INNER JOIN proveedores ON proveedores.codproveedor=articulos.proveedor where proveedores.nombre=?");
+		PreparedStatement lista = Database.conexion.prepareStatement("select Articulos.nombre from Articulos INNER JOIN Proveedores ON Proveedores.codproveedor=Articulos.proveedor where Proveedores.nombre=?");
 		lista.setString(1, proveedorBox.getSelectionModel().getSelectedItem());	
 		ResultSet resultado;
 		resultado = lista.executeQuery();

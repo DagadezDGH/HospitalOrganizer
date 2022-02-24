@@ -160,7 +160,7 @@ public class SalidaVerController implements Initializable {
 	 */
 	@FXML
 	void onCheckAction(ActionEvent event) throws SQLException {
-		PreparedStatement lista = Database.conexion.prepareStatement("UPDATE salidas SET comprobar=0 where codSalida=?");
+		PreparedStatement lista = Database.conexion.prepareStatement("UPDATE Salidas SET comprobar=0 where codSalida=?");
 		 lista.setInt(1, tablaSalidaArticulo.getSelectionModel().getSelectedItem().getCodSalida());
 		 lista.executeUpdate();
 		 actualizar();
@@ -188,8 +188,8 @@ public class SalidaVerController implements Initializable {
     	if (fechaSalidaCombo.getSelectionModel().isEmpty()==false) {
     		try {
     			PreparedStatement lista = Database.conexion.prepareStatement(""
-    					+ "SELECT S.cantidadSalida,S.codArticulo,A.nombre,A.ubicacion FROM salidaarticulo as S "
-    					+ "INNER JOIN articulos as A ON S.codArticulo=A.codArticulo "
+    					+ "SELECT S.cantidadSalida,S.codArticulo,A.nombre,A.ubicacion FROM SalidaArticulo as S "
+    					+ "INNER JOIN Articulos as A ON S.codArticulo=A.codArticulo "
     					+ "where S.codSalida=?");
     			lista.setInt(1, tablaSalidaArticulo.getSelectionModel().getSelectedItem().getCodSalida());
     			 
@@ -229,7 +229,7 @@ public class SalidaVerController implements Initializable {
 		listSalidas.clear();
 		
 		try {
-			PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM salidas INNER JOIN Lugares ON Lugares.codLugar=salidas.lugar where comprobar=1");
+			PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM Salidas INNER JOIN Lugares ON Lugares.codLugar=Salidas.lugar where comprobar=1");
 			 ResultSet resultado = lista.executeQuery();
 			while (resultado.next()) { 
 				
@@ -251,7 +251,7 @@ public class SalidaVerController implements Initializable {
 		listSalidas.clear();
 		
 		try {
-			PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM salidas INNER JOIN Lugares ON Lugares.codLugar=salidas.lugar where salidas.lugar=? and fechaSalida=? ");
+			PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM Salidas INNER JOIN Lugares ON Lugares.codLugar=Salidas.lugar where Salidas.lugar=? and fechaSalida=? ");
 			lista.setInt(1, lugarCombo.getSelectionModel().getSelectedItem().getCodLugar());	
 			lista.setString(2, fechaSalidaCombo.getSelectionModel().getSelectedItem());
 			 ResultSet resultado = lista.executeQuery();
@@ -278,7 +278,7 @@ public class SalidaVerController implements Initializable {
 	public void getFechaSalidaBox() {
 		try {
 		Database=new Conecciones();
-		PreparedStatement lista = Database.conexion.prepareStatement("SELECT DISTINCT fechaSalida from salidas where lugar=?");
+		PreparedStatement lista = Database.conexion.prepareStatement("SELECT DISTINCT fechaSalida from Salidas where lugar=?");
 		lista.setInt(1, lugarCombo.getSelectionModel().getSelectedItem().getCodLugar());	
 		ResultSet resultado;
 		resultado = lista.executeQuery();
@@ -295,7 +295,7 @@ public class SalidaVerController implements Initializable {
 	public void getLugarBox() {
 		try {
 		Database=new Conecciones();	
-		PreparedStatement lista = Database.conexion.prepareStatement("select * from lugares");
+		PreparedStatement lista = Database.conexion.prepareStatement("select * from Lugares");
 		ResultSet resultado;
 		resultado = lista.executeQuery();
 			while (resultado.next()) {	

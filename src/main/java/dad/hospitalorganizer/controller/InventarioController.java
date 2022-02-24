@@ -145,7 +145,7 @@ public class InventarioController implements Initializable {
 			try {
 				Conecciones conections = new Conecciones();
 				PreparedStatement delete = conections.conexion
-						.prepareStatement("delete from articulos where codArticulo = (?)");
+						.prepareStatement("delete from Articulos where codArticulo = (?)");
 				delete.setString(1, codigo);
 				delete.executeUpdate();
 

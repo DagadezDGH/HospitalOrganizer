@@ -103,7 +103,7 @@ public class BotHospital {
 	 */
 	public void queryArticulos(Long id) throws SQLException {
 		
-		PreparedStatement lista = Database.conexion.prepareStatement("Select * from articulos where cantidad< 30");
+		PreparedStatement lista = Database.conexion.prepareStatement("Select * from Articulos where cantidad< 30");
 		ResultSet resultado; 
 		String respuesta;
 		resultado = lista.executeQuery();
@@ -119,7 +119,7 @@ public class BotHospital {
 	 */
 	public void querySalida(Long id) throws SQLException {
 		
-		PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM salidas ORDER BY salidas.codSalida DESC LIMIT 1");
+		PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM Salidas ORDER BY Salidas.codSalida DESC LIMIT 1");
 		ResultSet resultado; 
 		String respuesta;
 		resultado = lista.executeQuery();
@@ -136,7 +136,7 @@ public class BotHospital {
 	 */
 	public void queryEntrada(Long id) throws SQLException {
 		
-		PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM entradas INNER JOIN proveedores on entradas.codProveedor=proveedores.codProveedor ORDER BY entradas.codEntrada DESC LIMIT 1");
+		PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM Entradas INNER JOIN Proveedores on Entradas.codProveedor=Proveedores.codProveedor ORDER BY Entradas.codEntrada DESC LIMIT 1");
 		ResultSet resultado; 
 		String respuesta;
 		resultado = lista.executeQuery();

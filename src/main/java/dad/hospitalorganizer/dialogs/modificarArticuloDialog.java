@@ -100,7 +100,7 @@ public class modificarArticuloDialog extends Dialog<Articulo> {
 				Conecciones conections = new Conecciones();
 
 				PreparedStatement prep = conections.conexion
-						.prepareStatement("update articulos set nombre = (?),ubicacion = (?),"
+						.prepareStatement("update Articulos set nombre = (?),ubicacion = (?),"
 								+ "cantidad = (?), descripcion = (?) where codArticulo = (?)");
 				prep.setString(1, nombretxt.getText());
 				prep.setString(2, ubicaciontxt.getText());

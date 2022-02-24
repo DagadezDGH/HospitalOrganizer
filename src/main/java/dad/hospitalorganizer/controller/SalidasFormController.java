@@ -165,7 +165,7 @@ public class SalidasFormController implements Initializable {
 	void onClickCrear(ActionEvent event) throws SQLException {
 		PreparedStatement lista;
 		lista = Database.conexion.prepareStatement(
-				"INSERT INTO `salidas`( `lugar`, `motivoSalida`, `paciente`, `personal`, `fechaSalida`, `comprobar`)"
+				"INSERT INTO `Salidas`( `lugar`, `motivoSalida`, `paciente`, `personal`, `fechaSalida`, `comprobar`)"
 						+ " VALUES ((?),(?),(?),(?),(?),(?))");
 		lista.setInt(1, lugarCombo.getSelectionModel().getSelectedItem().getCodLugar());
 		lista.setString(2, motivoText.getText());
@@ -175,7 +175,7 @@ public class SalidasFormController implements Initializable {
 		lista.setInt(6, 1);
 		lista.executeUpdate();
 		lista = Database.conexion.prepareStatement(
-				"select codSalida from salidas where lugar=(?) and motivoSalida=(?) and personal =(?) and fechaSalida=(?) and comprobar=1");
+				"select codSalida from Salidas where lugar=(?) and motivoSalida=(?) and personal =(?) and fechaSalida=(?) and comprobar=1");
 		ResultSet resultado;
 		lista.setInt(1, lugarCombo.getSelectionModel().getSelectedItem().getCodLugar());
 		lista.setString(2, motivoText.getText());
@@ -189,7 +189,7 @@ public class SalidasFormController implements Initializable {
 		}
 		for (int i = 0; i < listSalidaArticulos.size(); i++) {
 			lista = Database.conexion.prepareStatement(
-					"INSERT INTO `salidaarticulo`(`codArticulo`, `codSalida`, `cantidadSalida`) VALUES ((?),(?),(?))");
+					"INSERT INTO `SalidaArticulo`(`codArticulo`, `codSalida`, `cantidadSalida`) VALUES ((?),(?),(?))");
 
 			lista.setInt(1, listSalidaArticulos.get(i).getCodArticulo());
 			lista.setInt(2, codSalida);
@@ -207,7 +207,7 @@ public class SalidasFormController implements Initializable {
 			}
 
 			PreparedStatement updatecantida = Database.conexion
-					.prepareStatement("UPDATE articulos SET cantidad=? where codArticulo=?");
+					.prepareStatement("UPDATE Articulos SET cantidad=? where codArticulo=?");
 			updatecantida.setInt(1, cantid - listSalidaArticulos.get(i).getCantidad());
 			updatecantida.setInt(2, listSalidaArticulos.get(i).getCodArticulo());
 			updatecantida.executeUpdate();
@@ -233,7 +233,7 @@ public class SalidasFormController implements Initializable {
      */
 	public void getProveedor() throws SQLException {
 		proveedorProperty.clear();
-		PreparedStatement lista = Database.conexion.prepareStatement("select codProveedor,nombre from proveedores");
+		PreparedStatement lista = Database.conexion.prepareStatement("select codProveedor,nombre from Proveedores");
 		ResultSet resultado;
 		resultado = lista.executeQuery();
 		while (resultado.next()) {
@@ -247,8 +247,8 @@ public class SalidasFormController implements Initializable {
 	public void getArticulos() throws SQLException {
 		articuloProperty.clear();
 		PreparedStatement lista = Database.conexion
-				.prepareStatement("select Articulos.codArticulo,Articulos.nombre from Articulos INNER JOIN proveedores"
-						+ " ON proveedores.codproveedor=articulos.proveedor where proveedores.nombre='"
+				.prepareStatement("select Articulos.codArticulo,Articulos.nombre from Articulos INNER JOIN Proveedores"
+						+ " ON Proveedores.codproveedor=Articulos.proveedor where Proveedores.nombre='"
 						+ proveedorCombo.getSelectionModel().getSelectedItem().getNombre() + "'");
 
 		ResultSet resultado = lista.executeQuery();
@@ -264,7 +264,7 @@ public class SalidasFormController implements Initializable {
 		lugarProperty.clear();
 		try {
 			Database = new Conecciones();
-			PreparedStatement lista = Database.conexion.prepareStatement("select * from lugares");
+			PreparedStatement lista = Database.conexion.prepareStatement("select * from Lugares");
 			ResultSet resultado;
 			resultado = lista.executeQuery();
 			while (resultado.next()) {

@@ -96,8 +96,8 @@ public class MostrarSalidaArticuloDialog extends Dialog<Articulo> {
 		
 		try {
 			PreparedStatement lista = Database.conexion.prepareStatement(""
-					+ "SELECT S.cantidadSalida,S.codArticulo,A.nombre,A.ubicacion FROM salidaarticulo as S "
-					+ "INNER JOIN articulos as A ON S.codArticulo=A.codArticulo "
+					+ "SELECT S.cantidadSalida,S.codArticulo,A.nombre,A.ubicacion FROM SalidaArticulo as S "
+					+ "INNER JOIN Articulos as A ON S.codArticulo=A.codArticulo "
 					+ "where S.codSalida=?");
 			lista.setInt(1, submited.getCodSalida());
 			 

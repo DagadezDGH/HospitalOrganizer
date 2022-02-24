@@ -98,7 +98,7 @@ public class crearEntradaDialog extends Dialog<Entrada>{
 				proveedorProperty.add(resultado.getString("codProveedor"));
 				}
 		 PreparedStatement prep = conections.conexion.prepareStatement(
-					"insert into entradas (codProveedor, dni, fechaEntrada) values ((?), (?), (?))");
+					"insert into Entradas (codProveedor, dni, fechaEntrada) values ((?), (?), (?))");
 			prep.setString(1, proveedorProperty.get(0));
 			prep.setString(2, dniTxt.getText());
 			prep.setString(3, entradaDatePicker.getValue()+"");
