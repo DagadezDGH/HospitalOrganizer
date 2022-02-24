@@ -63,6 +63,7 @@
 							<bundleJre>true</bundleJre>
 							<additionalResources>
 								<additionalResource>README.md</additionalResource>
+								<additionalResource>ManualHospitalOrganizer.pdf</additionalResource>
 							</additionalResources>
 							<winConfig>
 								<icoFile>hospital72x72.ico</icoFile>
