@@ -2,22 +2,17 @@ package dad.hospitalorganizer.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import dad.hospitalorganizer.connections.Conecciones;
 import dad.hospitalorganizer.dialogs.MostrarSalidaArticuloDialog;
-import dad.hospitalorganizer.dialogs.modificarArticuloDialog;
 import dad.hospitalorganizer.informes.GenerarPDF;
 import dad.hospitalorganizer.main.App;
-import dad.hospitalorganizer.models.EntradaArticulo;
 import dad.hospitalorganizer.models.Lugar;
 import dad.hospitalorganizer.models.Salida;
-import dad.hospitalorganizer.models.SalidaArticulo;
 import dad.hospitalorganizer.models.tablaMostrar;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -29,13 +24,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import net.sf.jasperreports.engine.JRException;
-
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class SalidaVerController implements Initializable {
 
 	private ListProperty<Lugar> lugarProperty=new SimpleListProperty<Lugar>(FXCollections.observableArrayList());
@@ -80,7 +79,9 @@ public class SalidaVerController implements Initializable {
     
 	@FXML
     private Button informeButton;
-   
+	/**
+     * Inicializa la clase con sus bindeos, listeners, etc
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -102,8 +103,10 @@ public class SalidaVerController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
+    /**
+     * Escucha los cambios en el combo de Fecha
+     */
 	private void onFechaChange(ObservableValue<? extends String> o, String ov, String nv) {
 		if (ov!=null) {
 		}
@@ -115,7 +118,9 @@ public class SalidaVerController implements Initializable {
 			}
 		}
 	}
-	
+    /**
+     * Escucha los cambios en el combo de Lugares
+     */
 	private void onLugarChange(ObservableValue<? extends Lugar> o, Lugar ov, Lugar nv) {
 		if (ov!=null) {
 			fechaSalidaProperty.unbind();
@@ -134,19 +139,25 @@ public class SalidaVerController implements Initializable {
 			}
 		}
 	}
-
 	
-
+    /**
+     * Devuelve la vista
+     */
 	public GridPane getView() {
 		return view;
 	}
 
+	/**
+	 * Genera la interfaz apartir del fxml
+	 */
 	public SalidaVerController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SalidasVerView.fxml"));
 		loader.setController(this);
 		loader.load();
 	}
-
+	/**
+	 * Chekea si la salida ya ha salido
+	 */
 	@FXML
 	void onCheckAction(ActionEvent event) throws SQLException {
 		PreparedStatement lista = Database.conexion.prepareStatement("UPDATE salidas SET comprobar=0 where codSalida=?");
@@ -154,7 +165,9 @@ public class SalidaVerController implements Initializable {
 		 lista.executeUpdate();
 		 actualizar();
 	}
-
+	/**
+	 * Muestros en un dialog los articulos de esa salida
+	 */
 	@FXML
 	void onMostrarAction(ActionEvent event) {
 		Salida submited=tablaSalidaArticulo.getSelectionModel().getSelectedItem();
@@ -167,43 +180,56 @@ public class SalidaVerController implements Initializable {
 		}
 		
 	}
-	
+	/**
+	 * Genera un informe con los articulos de esa salida
+	 */
 	@FXML
     void onInformeAction(ActionEvent event) throws JRException, IOException {
-		try {
-			PreparedStatement lista = Database.conexion.prepareStatement(""
-					+ "SELECT S.cantidadSalida,S.codArticulo,A.nombre,A.ubicacion FROM salidaarticulo as S "
-					+ "INNER JOIN articulos as A ON S.codArticulo=A.codArticulo "
-					+ "where S.codSalida=?");
-			lista.setInt(1, tablaSalidaArticulo.getSelectionModel().getSelectedItem().getCodSalida());
-			 
-			 ResultSet resultado = lista.executeQuery();
-			while (resultado.next()) { 
-				
-				listSalidaArticulos.add(
-						new tablaMostrar(
-						resultado.getInt("codArticulo"), resultado.getInt("cantidadSalida"),
-						resultado.getString("nombre"), resultado.getString("ubicacion")));
-			}
-			System.out.println(listSalidaArticulos);
-		} catch (Exception e) {
-			e.getStackTrace();
+    	if (fechaSalidaCombo.getSelectionModel().isEmpty()==false) {
+    		try {
+    			PreparedStatement lista = Database.conexion.prepareStatement(""
+    					+ "SELECT S.cantidadSalida,S.codArticulo,A.nombre,A.ubicacion FROM salidaarticulo as S "
+    					+ "INNER JOIN articulos as A ON S.codArticulo=A.codArticulo "
+    					+ "where S.codSalida=?");
+    			lista.setInt(1, tablaSalidaArticulo.getSelectionModel().getSelectedItem().getCodSalida());
+    			 
+    			 ResultSet resultado = lista.executeQuery();
+    			while (resultado.next()) { 
+    				
+    				listSalidaArticulos.add(
+    						new tablaMostrar(
+    						resultado.getInt("codArticulo"), resultado.getInt("cantidadSalida"),
+    						resultado.getString("nombre"), resultado.getString("ubicacion")));
+    			}
+ 
+    		} catch (Exception e) {
+    			e.getStackTrace();
+    		}
+    		GenerarPDF.generarPdfSalida(getListSalidaArticulo());
+		} else {
+			Alert confirm = new Alert(AlertType.ERROR);
+			confirm.setTitle("ERROR");
+			confirm.setHeaderText("Error en la entrada");
+			confirm.setContentText("Asegúrese de que ha seleccionado una fecha correctamente.");
+			confirm.showAndWait();
 		}
-		
-		GenerarPDF.generarPdfSalida(getListSalidaArticulo());
+	
     }
-
+	/**
+	 * Volvemos al menu del programa
+	 */
 	@FXML
 	void onVolverAction(ActionEvent event) {
 		App.goToMain();
 	}
-
+	/**
+	 * Actualiza la tabla
+	 */
 	public void actualizar() throws SQLException {
 		listSalidas.clear();
 		
 		try {
 			PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM salidas INNER JOIN Lugares ON Lugares.codLugar=salidas.lugar where comprobar=1");
-			 
 			 ResultSet resultado = lista.executeQuery();
 			while (resultado.next()) { 
 				
@@ -218,6 +244,9 @@ public class SalidaVerController implements Initializable {
 			e.getStackTrace();
 		}
 	}
+	/**
+	 * Actualiza la tabla
+	 */
 	public void actualizar2() throws SQLException {
 		listSalidas.clear();
 		
@@ -243,6 +272,9 @@ public class SalidaVerController implements Initializable {
 			e.getStackTrace();
 		}
 	}
+    /**
+     * Nos devuelve las fechas y las mete en el combo
+     */
 	public void getFechaSalidaBox() {
 		try {
 		Database=new Conecciones();
@@ -257,6 +289,9 @@ public class SalidaVerController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+    /**
+     * Nos devuelve los lugares y los mete en el combo
+     */
 	public void getLugarBox() {
 		try {
 		Database=new Conecciones();	
@@ -270,6 +305,9 @@ public class SalidaVerController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+    /**
+     * Getter de la lista de los articulos
+     */
 	public List<tablaMostrar> getListSalidaArticulo() {
 		return listSalidaArticulos.get();
 	}

@@ -6,8 +6,9 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-//Modelo del diálogo insert
-
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class insertDialogModel {
 
 	//modelos de los property con los que trabajaremos en el diálogo

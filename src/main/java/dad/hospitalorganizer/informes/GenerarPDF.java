@@ -21,9 +21,14 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class GenerarPDF {
-
+	/**
+	 * Genera un pdf con los articulos de esa entrada
+	 * @param lista es la lista de articulo entrada
+	 */
 	public static void generarPdfEntrada(List<EntradaArticulo> lista) throws JRException, IOException {
 		// compila el informe
 		JasperReport report = JasperCompileManager.compileReport(GenerarPDF.class.getResourceAsStream("/reports/entrada.jrxml"));
@@ -37,12 +42,15 @@ public class GenerarPDF {
 				new JRBeanCollectionDataSource(lista));
 
 		// exporta el informe a un fichero PDF
-		JasperExportManager.exportReportToPdfFile(jasperPrint, "/Entrada.pdf");
+		JasperExportManager.exportReportToPdfFile(jasperPrint, "Entrada.pdf");
 
 		// Abre el archivo PDF generado con el programa predeterminado del sistema
 		Desktop.getDesktop().open(new File("Entrada.pdf"));
 	}
-	
+	/**
+	 * Genera un pdf con los articulos de esa salida
+	 * @param lista es la lista de articulo salida
+	 */
 	public static void generarPdfSalida(List<tablaMostrar> lista) throws JRException, IOException {
 		// compila el informe
 		JasperReport report = JasperCompileManager.compileReport(GenerarPDF.class.getResourceAsStream("/reports/salida.jrxml"));

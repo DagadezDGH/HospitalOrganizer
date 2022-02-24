@@ -21,6 +21,10 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ * Controla todas las escenas y los controllers
+ */
 public class App extends Application {
 	private static Stage primaryStage; 
 	
@@ -45,7 +49,10 @@ public class App extends Application {
 	static Scene salidasForm;
 	static Scene salidasVer;
 	static Scene login;
-
+	/**
+	 * Instancia las escenas con sus vistas
+	 * @param primaryStage 
+	 * */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -82,27 +89,51 @@ public class App extends Application {
 		launch(args);
 
 	}
+	/**
+	 * Cambia a la escena Main
+	 * */
 	public static void goToMain() {
 		primaryStage.setScene(main);
 	}
+	/**
+	 * Cambia a la escena Inventario
+	 * */
 	public static void goToInventario() {
 		primaryStage.setScene(inventario);
 	}
+	/**
+	 * Cambia a la escena Entrada
+	 * */
 	public static void goToEntrada() {
 		primaryStage.setScene(entrada);
 	}
+	/**
+	 * Cambia a la escena rellenar Entrada
+	 * */
 	public static void goToEntradaForm() {
 		primaryStage.setScene(entradaForm);
 	}
+	/**
+	 * Cambia a la escena ver Entrada
+	 * */
 	public static void goToEntradaVer() {
 		primaryStage.setScene(entradaVer);
 	}
+	/**
+	 * Cambia a la escena Salidas
+	 * */
 	public static void goToSalidas() {
 		primaryStage.setScene(salidas);
 	}
+	/**
+	 * Cambia a la escena rellenar Salidas
+	 * */
 	public static void goToSalidasForm() {
 		primaryStage.setScene(salidasForm);
 	}
+	/**
+	 * Cambia a la escena ver Salidas
+	 * */
 	public static void goToSalidasVer() {
 		primaryStage.setScene(salidasVer);
 	}

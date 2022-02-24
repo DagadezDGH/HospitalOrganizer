@@ -1,7 +1,6 @@
 package dad.hospitalorganizer.controller;
 
 import java.io.IOException;
-
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,21 +22,25 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
-
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class SalidasFormController implements Initializable {
 	private ListProperty<SalidaArticulo> listSalidaArticulos = new SimpleListProperty<SalidaArticulo>(FXCollections.observableArrayList());
 	private ListProperty<Articulocombo> articuloProperty = new SimpleListProperty<Articulocombo>(FXCollections.observableArrayList());
 	private ListProperty<Proveedorcombo> proveedorProperty = new SimpleListProperty<Proveedorcombo>(FXCollections.observableArrayList());
 	private ListProperty<Lugar> lugarProperty = new SimpleListProperty<Lugar>(FXCollections.observableArrayList());
 	private Conecciones Database;
-
+	
 	@FXML
 	private ComboBox<Paciente> pacienteCombo;
 
@@ -81,7 +84,9 @@ public class SalidasFormController implements Initializable {
 	private Button volverButton;
 
 	int codSalida;
-
+	/**
+     * Inicializa la clase con sus bindeos, listeners, etc
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Database = new Conecciones();
@@ -103,13 +108,17 @@ public class SalidasFormController implements Initializable {
 		}
 
 	}
-
+    /**
+     * Genera la interfaz apartir del fxml
+     */
 	public SalidasFormController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SalidasFormView.fxml"));
 		loader.setController(this);
 		loader.load();
 	}
-
+    /**
+     * Escucha los cambios en el combo Proveedor
+     */
 	private void onProveedorChange(ObservableValue<? extends Proveedorcombo> o, Proveedorcombo ov, Proveedorcombo nv) {
 		if (ov != null) {
 			articuloProperty.unbind();
@@ -125,21 +134,33 @@ public class SalidasFormController implements Initializable {
 			articulosCombo.itemsProperty().bind(articuloProperty);
 		}
 	}
-
+    /**
+     * Devuelve la vista
+     */
 	public GridPane getView() {
 		return view;
 	}
-
+    /**
+     * Añade el articulo a la tabla
+     */
 	@FXML
 	void onClickAñadir(ActionEvent event) {
-
+		if (lugarCombo.getSelectionModel().isEmpty()==false && proveedorCombo.getSelectionModel().isEmpty()==false && articulosCombo.getSelectionModel().isEmpty()==false 
+				&& cantidadText.getText().isEmpty()==false && motivoText.getText().isEmpty()==false && salidaDatePicker.getValue()!=null ) {
 		listSalidaArticulos.add(new SalidaArticulo(articulosCombo.getSelectionModel().getSelectedItem().getCodArticulo(),
 						Integer.parseInt(cantidadText.getText()),
 						articulosCombo.getSelectionModel().getSelectedItem().getNombre(),
 						proveedorCombo.getSelectionModel().getSelectedItem().getNombre()));
-
+		}else {
+			Alert confirm = new Alert(AlertType.ERROR);
+			confirm.setTitle("ERROR");
+			confirm.setHeaderText("Error en la entrada");
+			confirm.setContentText("Asegúrese de ha escrito todos los campos correctamente.");
+			confirm.showAndWait();}
 	}
-
+	/**
+     * Crea los articulos añadidos a la tabla
+     */
 	@FXML
 	void onClickCrear(ActionEvent event) throws SQLException {
 		PreparedStatement lista;
@@ -193,7 +214,9 @@ public class SalidasFormController implements Initializable {
 		}
 		limpiar();
 	}
-
+    /**
+     * Viajamos a la vista del menu
+     */
 	@FXML
 	void OnVolverAction(ActionEvent event) {
 		limpiar();
@@ -205,7 +228,9 @@ public class SalidasFormController implements Initializable {
 		}
 		App.goToMain();
 	}
-
+    /**
+     * Nos devuelve los proveedores y los mete en el combo
+     */
 	public void getProveedor() throws SQLException {
 		proveedorProperty.clear();
 		PreparedStatement lista = Database.conexion.prepareStatement("select codProveedor,nombre from proveedores");
@@ -216,7 +241,9 @@ public class SalidasFormController implements Initializable {
 		}
 
 	}
-
+    /**
+     * Nos devuelve los articulos y los mete en su respectivo combo
+     */
 	public void getArticulos() throws SQLException {
 		articuloProperty.clear();
 		PreparedStatement lista = Database.conexion
@@ -230,7 +257,9 @@ public class SalidasFormController implements Initializable {
 			articuloProperty.add(new Articulocombo(resultado.getInt("codArticulo"), resultado.getString("nombre")));
 		}
 	}
-
+    /**
+     * Nos devuelve los lugares y los mete en su respectivo combo
+     */
 	public void getLugarBox() {
 		lugarProperty.clear();
 		try {
@@ -245,7 +274,9 @@ public class SalidasFormController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
+    /**
+     * Limpia los datos de la vista
+     */
 	public void limpiar() {
 		motivoText.setText("");
 		salidaDatePicker.setValue(null);

@@ -13,12 +13,16 @@ import com.pengrad.telegrambot.request.SendMessage;
 import dad.hospitalorganizer.connections.Conecciones;
 import dad.hospitalorganizer.controller.EntradaVerController;
 import dad.hospitalorganizer.controller.SalidaVerController;
-
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class BotHospital {
 	private Conecciones Database;
 	TelegramBot bot = new TelegramBot("token");
 	boolean esperandoVariable = false;
-	
+	/**
+	 * Inicia el hilo del bot y pone un listener para los comandos
+	 */
 	public BotHospital() {
 		
 		Database= new Conecciones();
@@ -78,16 +82,25 @@ public class BotHospital {
 		});
 
 	}
-
+	/**
+	 * @param id es el identidicador del chat
+	 * Envia el ultimo pdf de salida
+	 */
 	public void enviarSalida(Long id) {
 		bot.execute(new SendDocument(id, new File("Salida.pdf")));
 	}
-
+	/**
+	 * @param id es el identidicador del chat
+	 * Envia el ultimo pdf de entrada
+	 */
 	public void enviarEntrada(Long id) {
 		bot.execute(new SendDocument(id, new File("Entrada.pdf")));
 		System.out.println(id);
 	}
-
+	/**
+	 * @param id es el identidicador del chat
+	 * Devuelve los articulos que queden pocas unidades
+	 */
 	public void queryArticulos(Long id) throws SQLException {
 		
 		PreparedStatement lista = Database.conexion.prepareStatement("Select * from articulos where cantidad< 30");
@@ -100,6 +113,10 @@ public class BotHospital {
 			}
 		
 	}
+	/**
+	 * @param id es el identidicador del chat
+	 * Devuelve la ultima salida
+	 */
 	public void querySalida(Long id) throws SQLException {
 		
 		PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM salidas ORDER BY salidas.codSalida DESC LIMIT 1");
@@ -113,6 +130,10 @@ public class BotHospital {
 			}
 		
 	}
+	/**
+	 * @param id es el identidicador del chat
+	 * Devuelve la ultima entrada
+	 */
 	public void queryEntrada(Long id) throws SQLException {
 		
 		PreparedStatement lista = Database.conexion.prepareStatement("SELECT * FROM entradas INNER JOIN proveedores on entradas.codProveedor=proveedores.codProveedor ORDER BY entradas.codEntrada DESC LIMIT 1");

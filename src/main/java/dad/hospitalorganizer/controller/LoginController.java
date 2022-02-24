@@ -22,7 +22,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
-
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class LoginController implements Initializable {
 	private Conecciones conect = new Conecciones();
 	private String nombre;
@@ -42,19 +44,25 @@ public class LoginController implements Initializable {
 
 	@FXML
 	private GridPane view;
-
+    /**
+     * Inicializa la clase con sus bindeos, listeners, etc
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		userProperty.bind(usuarioText.textProperty());
 		passwordProperty.bind(contraseñaText.textProperty());
 	}
-
+    /**
+     * Genera la interfaz apartir del fxml
+     */
 	public LoginController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LoginView.fxml"));
 		loader.setController(this);
 		loader.load();
 	}
-
+    /**
+     * Recoge los parametros para logearnos
+     */
 	@FXML
 	void onClickEntrar(ActionEvent event) throws SQLException {
 		int resultado = 0;
@@ -105,7 +113,9 @@ public class LoginController implements Initializable {
 			confirm.showAndWait();
 		}
 	}
-
+    /**
+     * Devuelve la vista
+     */
 	public GridPane getView() {
 		return view;
 	}

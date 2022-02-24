@@ -5,14 +5,11 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import dad.hospitalorganizer.connections.Conecciones;
 import dad.hospitalorganizer.informes.GenerarPDF;
 import dad.hospitalorganizer.main.App;
-import dad.hospitalorganizer.models.Entrada;
 import dad.hospitalorganizer.models.EntradaArticulo;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -23,13 +20,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import net.sf.jasperreports.engine.JRException;
-
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class EntradaVerController implements Initializable {
 	private Conecciones Database;
 	private ListProperty<String> proveedorProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
@@ -62,7 +63,9 @@ public class EntradaVerController implements Initializable {
     @FXML
     private Button volverButton;
 
-
+    /**
+     * Inicializa la clase con sus bindeos, listeners, etc
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		getProveedorBox();
@@ -75,7 +78,9 @@ public class EntradaVerController implements Initializable {
 		proveedorCombo.valueProperty().addListener((o,ov,nv) -> onProveedorChange(o,ov,nv));
 		fechaEntradaCombo.valueProperty().addListener((o,ov,nv) -> onFechaChange(o,ov,nv));
 	}
-	
+    /**
+     * Escucha los cambios en la fecha
+     */
 	private void onFechaChange(ObservableValue<? extends String> o, String ov, String nv) {
 		if (ov!=null) {
 		}
@@ -87,7 +92,9 @@ public class EntradaVerController implements Initializable {
 			}
 		}
 	}
-	
+    /**
+     * Escucha los cambios en el combo Proveedor
+     */
 	private void onProveedorChange(ObservableValue<? extends String> o, String ov, String nv) {
 		if (ov!=null) {
 			fechaEntradaProperty.unbind();
@@ -103,14 +110,17 @@ public class EntradaVerController implements Initializable {
 			}
 		}
 	}
-	
-	
+    /**
+     * Genera la interfaz apartir del fxml
+     */
     public EntradaVerController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EntradasVerView.fxml"));
 		loader.setController(this);
 		loader.load();
 	}
-
+    /**
+     * Nos devuelve los proveedores y los mete en el combo
+     */
 	public void getProveedorBox() {
 		try {
 		Database=new Conecciones();	
@@ -124,6 +134,9 @@ public class EntradaVerController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+    /**
+     * Nos devuelve los fecha en su combobox
+     */
 	public void getFechaEntradaBox() {
 		try {
 		Database=new Conecciones();
@@ -146,13 +159,15 @@ public class EntradaVerController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-    
+    /**
+     * Actualiza la tabla con sus datos
+     */
 	public void actualizar() throws SQLException {
 		listEntradaArticulo.clear();
 		try {	
 			PreparedStatement lista = Database.conexion.prepareStatement(""
 					+ "SELECT entradaarticulo.codEntrada, articulos.nombre, entradaarticulo.cantidad, articulos.codArticulo, caducidad FROM entradaarticulo"
-					+ " INNER JOIN Articulos ON entradaarticulo.codArticulo=articulos.codArticulo "
+					+ "INNER JOIN Articulos ON entradaarticulo.codArticulo=articulos.codArticulo "
 					+ "INNER JOIN Entradas ON Entradas.codEntrada=entradaarticulo.codEntrada "
 					+ "INNER JOIN proveedores ON Proveedores.codproveedor=Entradas.codproveedor where proveedores.nombre=? AND entradas.fechaEntrada=?");
 			lista.setString(1, proveedorCombo.getSelectionModel().getSelectedItem());	
@@ -165,12 +180,15 @@ public class EntradaVerController implements Initializable {
 		} catch (Exception e) {
 		 		e.getStackTrace();
 		}}
+    /**
+     * Actualiza la tabla con sus datos
+     */
 	public void actualizar2() throws SQLException {
 		listEntradaArticulo.clear();
 		try {	
 			PreparedStatement lista = Database.conexion.prepareStatement(""
 					+ "SELECT entradaarticulo.codEntrada, articulos.nombre, entradaarticulo.cantidad, articulos.codArticulo, caducidad FROM entradaarticulo"
-					+ " INNER JOIN Articulos ON entradaarticulo.codArticulo=articulos.codArticulo "
+					+ "INNER JOIN Articulos ON entradaarticulo.codArticulo=articulos.codArticulo "
 					+ "INNER JOIN Entradas ON Entradas.codEntrada=entradaarticulo.codEntrada "
 					+ "INNER JOIN proveedores ON Proveedores.codproveedor=Entradas.codproveedor where proveedores.nombre=? AND entradas.fechaEntrada=?");
 			lista.setString(1, proveedorCombo.getSelectionModel().getSelectedItem());	
@@ -184,20 +202,37 @@ public class EntradaVerController implements Initializable {
 		 		e.getStackTrace();
 		}
 	}
+    /**
+     * Genera un informe
+     */
     @FXML
     void OnInformeAction(ActionEvent event) throws JRException, IOException {
-    	
-    	GenerarPDF.generarPdfEntrada(getListEntradaArticulo());
-    	
+    	if (fechaEntradaCombo.getSelectionModel().isEmpty()==false) {
+    		GenerarPDF.generarPdfEntrada(getListEntradaArticulo());
+    		} else {
+    			Alert confirm = new Alert(AlertType.ERROR);
+    			confirm.setTitle("ERROR");
+    			confirm.setHeaderText("Error en la entrada");
+    			confirm.setContentText("Asegúrese de que ha seleccionado una fecha correctamente.");
+    			confirm.showAndWait();
+    		}
     }
+    /**
+     * Volve al menu
+     */
     @FXML
     void OnVolverAction(ActionEvent event) {
     	App.goToMain();
     }
+    /**
+     * Devuelve la vista
+     */
     public GridPane getView() {
 		return view;
 	}
-	
+    /**
+     * Nos devuelve la lista de articulos
+     */
 	public List<EntradaArticulo> getListEntradaArticulo() {
 		return listEntradaArticulo.get();
 	}

@@ -30,7 +30,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class InventarioController implements Initializable {
 	// model
 	private Conecciones Database;
@@ -81,11 +83,12 @@ public class InventarioController implements Initializable {
 	@FXML
     private Button recargarButton;
 
+    /**
+     * Inicializa la clase con sus bindeos, listeners, etc
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
 		Database = new Conecciones();
-
 		articuloColumn.setCellValueFactory(v -> new SimpleStringProperty("" + v.getValue().getCodArticulo()));
 		nombreColumn.setCellValueFactory(v -> new SimpleStringProperty(v.getValue().getNombre()));
 		descripcionColumn.setCellValueFactory(v -> new SimpleStringProperty(v.getValue().getDescripcion()));
@@ -105,13 +108,17 @@ public class InventarioController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
+    /**
+     * Genera la interfaz apartir del fxml
+     */
 	public InventarioController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/InventarioView.fxml"));
 		loader.setController(this);
 		loader.load();
 	}
-
+    /**
+     * Crea un dialog para crear un articulo nuevo
+     */
 	@FXML
 	void onClickCrear(ActionEvent event) throws SQLException {
 		try {
@@ -123,7 +130,9 @@ public class InventarioController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
+    /**
+     * Elimina el articulo seleccionado de la tabla
+     */
 	@FXML
 	void onClickEliminar(ActionEvent event) {
 		Alert confirmation = new Alert(AlertType.CONFIRMATION);
@@ -151,7 +160,9 @@ public class InventarioController implements Initializable {
 		}
 
 	}
-
+    /**
+     * Modifica el articulo seleccionado de la tabla
+     */
 	@FXML
 	void onClickModificar(ActionEvent event) throws SQLException {
 		Articulo submited = null;
@@ -169,7 +180,6 @@ public class InventarioController implements Initializable {
 				actualizar();
 
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
@@ -181,26 +191,34 @@ public class InventarioController implements Initializable {
 			error.showAndWait();
 		}
 	}
-
+    /**
+     * Es un boton actualiza los datos de la tabla
+     */
     @FXML
     void onClickRecargar(ActionEvent event) {
     	try {
 			actualizar();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
-
+    /**
+     * Volve al menu
+     */
 	@FXML
 	void onVolverAction(ActionEvent event) {
 		App.goToMain();
 	}
 
+	/**
+	 * Devuelve la vista
+	 */
 	public GridPane getView() {
 		return view;
 	}
-
+    /**
+     * Actualiza los datos de la tabla
+     */
 	public void actualizar() throws SQLException {
 		listArticulos.clear();
 		PreparedStatement lista = Database.conexion.prepareStatement("select * from Articulos");

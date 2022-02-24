@@ -22,7 +22,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.GridPane;
-
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class crearEntradaDialog extends Dialog<Entrada>{
 	//model
 	Conecciones conections = new Conecciones();

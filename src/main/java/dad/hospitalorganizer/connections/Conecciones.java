@@ -2,15 +2,18 @@ package dad.hospitalorganizer.connections;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class Conecciones {
 
 	public Connection conexion;
 	
-	
+	/**
+	 * Abre una coneccion a la base de datos
+	 */
 	public Conecciones() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

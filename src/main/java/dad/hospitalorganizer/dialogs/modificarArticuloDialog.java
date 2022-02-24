@@ -1,17 +1,10 @@
 package dad.hospitalorganizer.dialogs;
 
-/**
- * @author Carlos Javier Cosme Melian
- */
-
 import java.io.IOException;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import java.util.Optional;
-
 import dad.hospitalorganizer.connections.Conecciones;
 import dad.hospitalorganizer.models.Articulo;
 import javafx.collections.FXCollections;
@@ -23,10 +16,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
-
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class modificarArticuloDialog extends Dialog<Articulo> {
 
 	// Cargamos los elementos del FXML

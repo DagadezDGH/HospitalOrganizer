@@ -1,9 +1,8 @@
 package dad.hospitalorganizer.dialogs;
 
 /**
- * @author Carlos Javier Cosme Melian uwu chiquitas curvas
+ * @author David Castellano David Garrido Carlos Cosme
  */
-
 import java.io.IOException;
 
 import java.sql.PreparedStatement;

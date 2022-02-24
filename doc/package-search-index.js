@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"dad.hospitalorganizer.bot"},{"l":"dad.hospitalorganizer.connections"},{"l":"dad.hospitalorganizer.controller"},{"l":"dad.hospitalorganizer.dialogs"},{"l":"dad.hospitalorganizer.informes"},{"l":"dad.hospitalorganizer.main"},{"l":"dad.hospitalorganizer.models"}];updateSearchResults();

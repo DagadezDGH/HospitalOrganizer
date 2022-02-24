@@ -12,7 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class EntradaController implements Initializable{
 	
 		@FXML
@@ -38,24 +40,31 @@ public class EntradaController implements Initializable{
 			// TODO Auto-generated method stub
 			
 		}
-	    
+	    /**
+	     * Genera la interfaz apartir del fxml
+	     */
 	    public EntradaController() throws IOException {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EntradasView.fxml"));
 			loader.setController(this);
 			loader.load();
 		}
-
-		public GridPane getView() {
-			
+	    /**
+	     * Devuelve la vista
+	     */
+		public GridPane getView() {	
 			return view;
 		}
 	    
-	    
+	    /**
+	     * Llama el metodo de App para nueva entrada
+	     */
 	    @FXML
 	    void onClickNuevoPedido(ActionEvent event) {
 	    	App.goToEntradaForm();
 	    }
-
+	    /**
+	     * Llama el metodo de App para ver entrada
+	     */
 	    @FXML
 	    void onClickVerPedido(ActionEvent event) {
 	    	App.goToEntradaVer();

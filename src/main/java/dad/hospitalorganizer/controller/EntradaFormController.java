@@ -8,19 +8,15 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import dad.hospitalorganizer.connections.Conecciones;
-import dad.hospitalorganizer.dialogs.crearArticuloDialog;
 import dad.hospitalorganizer.dialogs.crearEntradaDialog;
 import dad.hospitalorganizer.main.App;
-import dad.hospitalorganizer.models.Articulo;
 import dad.hospitalorganizer.models.Entrada;
-import dad.hospitalorganizer.models.EntradaArticulo;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +32,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.util.converter.NumberStringConverter;
-
+/**
+ * @author David Castellano David Garrido Carlos Cosme
+ */
 public class EntradaFormController implements Initializable {
 	//model
 	private ListProperty<String> proveedorProperty=new SimpleListProperty<String>(FXCollections.observableArrayList());
@@ -81,7 +79,9 @@ public class EntradaFormController implements Initializable {
     
     @FXML
     private DatePicker caducidadDatePicker;
-    
+    /**
+     * Inicializa la clase con sus bindeos, listeners, etc
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		getProveedorBox();
@@ -94,6 +94,9 @@ public class EntradaFormController implements Initializable {
 		proveedorBox.valueProperty().addListener((o,ov,nv) -> onProveedorChange(o,ov,nv));
 		cantidadText.textProperty().bindBidirectional(cantidad,new NumberStringConverter());
 	}
+    /**
+     * Escucha los cambios en el combo Proveedor
+     */
 	private void onProveedorChange(ObservableValue<? extends String> o, String ov, String nv) {
 		if (ov!=null) {
 			articuloProperty.unbind();
@@ -113,27 +116,34 @@ public class EntradaFormController implements Initializable {
 			System.out.println("Valor nuevo "+listEntrada);
 		}
 	}
-
+    /**
+     * Genera la interfaz apartir del fxml
+     */
 	public EntradaFormController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EntradasFormView.fxml"));
 		loader.setController(this);
 		loader.load();
 	}
+    /**
+     * Genera un dialog que rellenaremos con datos posteriormente
+     */
 	@FXML
 	void onNuevaEntradaAction(ActionEvent event) throws SQLException, IOException {
 		crearEntradaDialog dialog = new crearEntradaDialog();
 		dialog.showAndWait();
 		actualizar();
 	}
-
+    /**
+     * Añadir el articulo a la tabla
+     */
     @FXML
     void onAnadirAction(ActionEvent event) throws SQLException {
+    	if (tablaEntradaArticulo.getSelectionModel().isEmpty()==false) {
     	Alert confirmation = new Alert(AlertType.CONFIRMATION);
 		confirmation.setTitle("CONFIRMACION");
 		confirmation.setHeaderText("¿Seguro que quieres añadir este articulo?");
-
 		Optional<ButtonType> resultad = confirmation.showAndWait();
-		if (resultad.get() == ButtonType.OK) {
+		if (resultad.get() == ButtonType.OK && cantidad.getValue()!=0 && caducidadDatePicker.getValue()!=null) {
 	    	int cantid=0;
 			PreparedStatement list = Database.conexion.prepareStatement("select * from Articulos where nombre=?");
 			list.setString(1, articulosBox.getSelectionModel().getSelectedItem());
@@ -162,15 +172,32 @@ public class EntradaFormController implements Initializable {
 		Alert confirm = new Alert(AlertType.ERROR);
 		confirm.setTitle("ERROR");
 		confirm.setHeaderText("Error en la entrada");
-		confirm.setContentText("Asegúrese de que la escribió correctamente.");}
+		confirm.setContentText("Asegúrese de que la escribió correctamente.");
+		confirm.showAndWait();}
+		}
+		else {
+			Alert confirm = new Alert(AlertType.ERROR);
+			confirm.setTitle("ERROR");
+			confirm.setHeaderText("Error en la entrada");
+			confirm.setContentText("Asegúrese de que ha seleccionado un item de la tabla correctamente.");
+			confirm.showAndWait();}
     }
+    /**
+     * Volve al menu
+     */
     @FXML
     void onVolverAction(ActionEvent event) {
     	App.goToMain();
     }
+    /**
+     * Devuelve la vista
+     */
     public GridPane getView() {
 		return view;
 	}
+    /**
+     * Actualiza la tabla con sus datos
+     */
 	public void actualizar() throws SQLException {
 		listEntrada.clear();
 		try {	
@@ -184,7 +211,9 @@ public class EntradaFormController implements Initializable {
 		} catch (Exception e) {
 		 		e.getStackTrace();
 		}}
-
+    /**
+     * Nos devuelve los proveedores y los mete en el combo
+     */
 	public void getProveedorBox() {
 		try {
 		Database=new Conecciones();	
@@ -198,6 +227,9 @@ public class EntradaFormController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+    /**
+     * Nos devuelve los articulos y los mete en el combo
+     */
 	public void getArticulos() {
 		try {
 		Database=new Conecciones();	
