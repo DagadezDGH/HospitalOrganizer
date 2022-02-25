@@ -72,3 +72,6 @@ Podremos visualizar la salida deseada, que clicando en ella y en el botón mostr
 
 ## Documentación
 * [Manual de Uso](ManualHospitalOrganizer.pdf)
+* [JavaDoc](doc)
+## Agradecimientos
+* [Iconos by: Icons](https://icon-icons.com/es/)
